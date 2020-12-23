@@ -16,7 +16,7 @@ namespace Domain.ApiMLBConnection.Consumers
             }
         }
 
-public List<string> GetProducts(string productSearch)
+        public List<string> GetProducts(string productSearch)
         {
             string action = BaseUrl + $"/sites/MLB/search?q={productSearch}";
 
@@ -35,7 +35,7 @@ public List<string> GetProducts(string productSearch)
             HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
 
             JArray cathegories = JArray.Parse(response.Content.ReadAsStringAsync().Result);
-            
+
             var list = new List<string>();
 
             foreach (var item in cathegories)
