@@ -16,13 +16,34 @@ namespace Domain.ApiMLBConnection.Consumers
             }
         }
 
-        public List<string> GetProducts(string productSearch)
+public List<string> GetProducts(string productSearch)
         {
             string action = BaseUrl + $"/sites/MLB/search?q={productSearch}";
 
-            var products = GetMethodHandler(action);
+            JArray product = (JArray)GetMethodHandler(action)["results"];
 
-            return GetBestSellers((JArray)products["results"]);
+            return GetBestSellers(product);
+
+        }
+
+        public List<string> GetCathegories()
+        {
+            string action = BaseUrl + "/sites/MLB/categories";
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, action);
+
+            HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
+
+            JArray cathegories = JArray.Parse(response.Content.ReadAsStringAsync().Result);
+            
+            var list = new List<string>();
+
+            foreach (var item in cathegories)
+            {
+                list.Add(item.ToString());
+            }
+
+            return list;
 
         }
 
@@ -44,11 +65,15 @@ namespace Domain.ApiMLBConnection.Consumers
 
         public List<string> GetProductsByCathegory(string cathegoryId)
         {
-            string action = BaseUrl + $"/sites/MLB/search?category={cathegoryId}";
+            string action = $"/sites/MLB/search?category={cathegoryId}";
 
-            JArray products = (JArray)GetMethodHandler(action)["results"];
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseUrl + action);
 
-            return GetBestSellers(products);
+            HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
+
+            JArray product = (JArray)JObject.Parse(response.Content.ReadAsStringAsync().Result)["results"];
+
+            return GetBestSellers(product);
         }
 
         private List<string> GetBestSellers(JArray json2Filter)
