@@ -20,10 +20,17 @@ namespace Domain.ApiMLBConnection.Consumers
         {
             string action = BaseUrl + $"/sites/MLB/search?q={productSearch}";
 
-            JArray product = (JArray)GetMethodHandler(action)["results"];
+            JArray products = (JArray)GetMethodHandler(action)["results"];
 
-            return GetBestSellers(product);
+            return GetBestSellers(products);
 
+        }
+
+        //I'm gonna change that signature.... Let me thing over that
+        public void GetProductByMLBId(string idMLB)
+        {
+            string action = BaseUrl + $"/items/{idMLB}";
+            var product = GetMethodHandler(action);
         }
 
         public List<string> GetCathegories()
