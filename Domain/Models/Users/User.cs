@@ -14,6 +14,14 @@ namespace Domain.Models.Users
         public string Password { get; set; }
         public List<Product> WishListProducts { get; set; }
 
+        public User(string name, string email, string password)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+           
+        }
+
         private bool ValidateEmail()
         {
             return Regex.IsMatch(

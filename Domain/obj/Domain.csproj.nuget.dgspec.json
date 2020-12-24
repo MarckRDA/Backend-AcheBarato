@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj": {}
+    "/media/rodrigo/Dados/dev/backend-achebarato/Domain/Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj": {
+    "/media/rodrigo/Dados/dev/backend-achebarato/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj",
+        "projectUniqueName": "/media/rodrigo/Dados/dev/backend-achebarato/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\obj\\",
+        "projectPath": "/media/rodrigo/Dados/dev/backend-achebarato/Domain/Domain.csproj",
+        "packagesPath": "/home/rodrigo/.nuget/packages/",
+        "outputPath": "/media/rodrigo/Dados/dev/backend-achebarato/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/rodrigo/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
         }
       }
     }
