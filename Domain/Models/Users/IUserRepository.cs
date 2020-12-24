@@ -1,14 +1,10 @@
 using System;
-using System.Collections.Generic;
-
+using Domain.Infra;
 
 namespace Domain.Models.Users
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        void AddUser(User user);
-        IEnumerable<User> GetUsers();
-        User GetUser(Guid idUser);
-        void RemoveUser(Guid idUser);        
+        User GetUserById(Guid user);
     }
 }

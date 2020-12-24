@@ -5,14 +5,19 @@ namespace Domain.src.Users
 {
     public class UserServices
     {
-        private IUserRepository _UserRepository = new UserRepository();
+        private IUserRepository _userRepository;
+
+        public UserServices(IUserRepository repository)
+        {
+            _userRepository = repository;
+        }
 
         public User CreateUser(string name, string password, string email )
         {
             var newuser = new User(name, password,email);
             if (newuser.Validate().isValid)
             {
-                _UserRepository.AddUser(newuser);
+                _userRepository.add(newuser);
                 return newuser;
             }
 
@@ -21,9 +26,10 @@ namespace Domain.src.Users
 
         public User ObterUsuario(Guid idUser)
         {
-            return _UserRepository.GetUser(idUser);
+            return _userRepository.GetElement(user => user.UserId == idUser);
         }
 
+        // What the fuck is it, vinicius?
         public (bool isValid, Guid id) AdicionarUsuario(string name, string password, string email)
         {
             var newuser = CreateUser(name,password,email);
@@ -36,9 +42,6 @@ namespace Domain.src.Users
             return (true, newuser.UserId);
         }
 
-        public void RemoverUsuario(Guid idUser)
-        {
-            _UserRepository.RemoveUser(idUser);
-        }
+        
     }
 }
