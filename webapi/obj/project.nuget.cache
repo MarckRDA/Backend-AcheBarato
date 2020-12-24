@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OPik89gtAxsMYKpIsMJX7NB01rnWLiwLAC7R8msRP8UWYYrkeJMhjaeeNdZHl05/gHt4QpkoP43q04BPM0M76Q==",
+  "dgSpecHash": "eZGxY8CHrL1oey2tOyTIngfVgBB1zhdkidk/rMKIgVuy/sw9WyjBKGgJ8+E91oq0VWkLLnb5sCnByfXHSq94uA==",
   "success": true,
-  "projectFilePath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
-  "expectedPackageFiles": [
-    "/home/marckrda/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.3/microsoft.aspnetcore.app.ref.3.1.3.nupkg.sha512",
-    "/home/marckrda/.nuget/packages/microsoft.netcore.app.host.linux-x64/3.1.6/microsoft.netcore.app.host.linux-x64.3.1.6.nupkg.sha512"
-  ],
+  "projectFilePath": "c:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\webapi\\webapi.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

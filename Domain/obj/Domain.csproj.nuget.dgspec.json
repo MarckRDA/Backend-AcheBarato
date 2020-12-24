@@ -1,29 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {}
+    "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
+    "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
-        "packagesPath": "/home/marckrda/.nuget/packages/",
-        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/obj/",
+        "projectPath": "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/marckrda/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -34,13 +34,27 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netcoreapp3.1": {
           "dependencies": {
-            "NETStandard.Library": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -57,7 +71,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

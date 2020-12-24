@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj": {}
+    "c:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj": {
+    "c:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
+        "projectUniqueName": "c:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
-        "packagesPath": "/home/marckrda/.nuget/packages/",
-        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/obj/",
+        "projectPath": "c:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\webapi\\webapi.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\User\\Entra21\\Achebarato.com\\backend-achebarato\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/marckrda/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -45,16 +45,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.3, 3.1.3]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.linux-x64",
-              "version": "[3.1.6, 3.1.6]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -63,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
