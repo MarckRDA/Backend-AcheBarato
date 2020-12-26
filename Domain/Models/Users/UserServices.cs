@@ -3,7 +3,7 @@ using Domain.Models.Users;
 
 namespace Domain.src.Users
 {
-    public class UserServices
+    public class UserServices : IUserServices
     {
         private IUserRepository _userRepository;
 
@@ -29,7 +29,7 @@ namespace Domain.src.Users
             return _userRepository.GetElement(user => user.UserId == idUser);
         }
 
-        // What the fuck is it, vinicius?
+        [Obsolete("What the fuck is it, vinicius?")]
         public (bool isValid, Guid id) AdicionarUsuario(string name, string password, string email)
         {
             var newuser = CreateUser(name,password,email);
