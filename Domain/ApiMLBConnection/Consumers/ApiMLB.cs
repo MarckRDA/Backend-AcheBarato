@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Domain.ApiMLBConnection.Instance;
 using Domain.ApiMLBConnection.Interfaces;
+using Domain.Models.Cathegories;
+using Domain.Models.Products;
 using Newtonsoft.Json.Linq;
 
 namespace Domain.ApiMLBConnection.Consumers
 {
     public class ApiMLB : IApi
     {
-        public string BaseUrl
+        public static string BaseUrl
         {
             get
             {
@@ -16,7 +18,7 @@ namespace Domain.ApiMLBConnection.Consumers
             }
         }
 
-        public List<string> GetProducts(string productSearch)
+        public static List<Product> GetProducts(string productSearch)
         {
             string action = BaseUrl + $"/sites/MLB/search?q={productSearch}";
 
@@ -27,13 +29,13 @@ namespace Domain.ApiMLBConnection.Consumers
         }
 
         //I'm gonna change that signature.... Let me thing over that
-        public void GetProductByMLBId(string idMLB)
+        public static void GetProductByMLBId(string idMLB)
         {
             string action = BaseUrl + $"/items/{idMLB}";
             var product = GetMethodHandler(action);
         }
 
-        public List<string> GetCathegories()
+        public static List<string> GetCathegories()
         {
             string action = BaseUrl + "/sites/MLB/categories";
 
@@ -54,7 +56,7 @@ namespace Domain.ApiMLBConnection.Consumers
 
         }
 
-        public List<string> GetCathegoriesChildrendById(string cathegoryId)
+        public static List<string> GetCathegoriesChildrendById(string cathegoryId)
         {
             string action = BaseUrl + $"/categories/{cathegoryId}";
 
@@ -70,7 +72,7 @@ namespace Domain.ApiMLBConnection.Consumers
             return cathegorieInString;
         }
 
-        public List<string> GetProductsByCathegory(string cathegoryId)
+        public static List<Product> GetProductsByCathegory(string cathegoryId)
         {
             string action = $"/sites/MLB/search?category={cathegoryId}";
 
@@ -83,22 +85,38 @@ namespace Domain.ApiMLBConnection.Consumers
             return GetBestSellers(product);
         }
 
-        private List<string> GetBestSellers(JArray json2Filter)
+        private static List<Product> GetBestSellers(JArray json2Filter)
         {
-            var productsWithTrustedSellers = new List<string>();
+            var productsWithTrustedSellers = new List<Product>();
 
             foreach (var pd in json2Filter)
             {
                 if (pd["seller"]["seller_reputation"]["power_seller_status"].ToString() == "platinum")
                 {
-                    productsWithTrustedSellers.Add(pd.ToString());
+                    var createTag = pd["title"].ToString().Split(",");
+                    
+                    foreach (var tag in createTag)
+                    {
+                        tag.ToUpper();
+                    }
+                    
+                    productsWithTrustedSellers.Add(new Product(pd["title"].ToString(), 
+                                                    pd["id"].ToString(),
+                                                    double.Parse(pd["price"].ToString()),
+                                                    new Cathegory(pd["category_id"].ToString(), 
+                                                    pd["domain_id"].ToString()))
+                                                    {
+                                                        ImgLink = pd["thumbnail"].ToString(),
+                                                        LinkRedirectShop = pd["permalink"].ToString(),
+                                                        Tags = createTag
+                                                    });
                 }
             }
 
             return productsWithTrustedSellers;
         }
 
-        private JObject GetMethodHandler(string endpoint)
+        private static JObject GetMethodHandler(string endpoint)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, endpoint);
 
