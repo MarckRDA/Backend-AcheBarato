@@ -8,11 +8,10 @@ namespace Domain.Infra
 {
     public class AcheBaratoContext : DbContext
     {
-
         public DbSet<User> Users { get; set; }
-        public DbSet<Product> Product { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<HistorycalPrice> HistoricalPrices { get; set; }
-        public DbSet<Cathegory> Cathegorys { get; set; }
+        public DbSet<Cathegory> Cathegories { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
