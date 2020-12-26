@@ -15,10 +15,12 @@ namespace Domain.Models.Products
         public Cathegory Cathegory { get; set; }
         public List<Description> Descriptions { get; set; }
         public List<HistorycalPrice> HistorycalPrices { get; set; }
+        public string[] Tags { get; set; }
 
-        public Product(string name, double price, Cathegory cathegory)
+        public Product(string name, string pdIdMLB, double price, Cathegory cathegory)
         {
             Id = Guid.NewGuid();
+            ProductIdMLB = pdIdMLB;
             Name = name;
             Price = price;
             Cathegory = cathegory;
