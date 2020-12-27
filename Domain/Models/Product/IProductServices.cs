@@ -5,7 +5,7 @@ namespace Domain.Models.Products
 {
     public interface IProductServices
     {
-        ProductDTO GetProductDTO(Guid idProduct);
+        ProductDTO GetProductDTO(string idMLBProduct);
         List<ProductDTO> GetAllProduct(string search);
     }
 }

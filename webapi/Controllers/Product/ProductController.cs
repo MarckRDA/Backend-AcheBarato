@@ -21,5 +21,13 @@ namespace webapi.Product
             var searching = this.Request.QueryString.ToString();
             return Ok(_productServices.GetAllProduct(searching));
         }
+
+        [HttpGet("{idMLBProduct}")]
+        public IActionResult GetProducyById(string idMLBProduct)
+        {
+            return Ok(_productServices.GetProductDTO(idMLBProduct));
+        }
+
+        
     }
 }

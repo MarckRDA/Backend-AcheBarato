@@ -14,6 +14,7 @@ namespace Domain.Models.Products
             _productRepository = repository;
         }
 
+
         public List<ProductDTO> GetAllProduct(string search)
         {
             PostProductInDB(search);
@@ -33,14 +34,32 @@ namespace Domain.Models.Products
             return listProducts;
         }
 
-        public ProductDTO GetProductDTO(Guid idProduct)
+        public ProductDTO GetProductDTO(string idMLBProduct)
         {
-            throw new NotImplementedException();
+            var productFound = _productRepository.GetElement(product => product.ProductIdMLB == idMLBProduct);
+
+            return new ProductDTO()
+            {
+                Name = productFound.Name,
+                Price = productFound.Price,
+                Descriptions = productFound.Descriptions,
+                HistorycalPrices = productFound.HistorycalPrices,
+                LinkRedirectShop = productFound.LinkRedirectShop,
+                Pictures = productFound.Pictures
+            };
         }
 
         private void PostProductInDB(string search)
         {
             var products = ApiMLB.GetProducts(search);
+
+            foreach (var product in products)
+            {
+                if(_productRepository.GetElement(pd => pd.ProductIdMLB == product.ProductIdMLB) != null)
+                {
+                    products.Remove(product);
+                }
+            }
 
             foreach (var pd in products)
             {

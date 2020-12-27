@@ -1,6 +1,7 @@
 using System;
+using Domain.Models.Products;
 
-namespace Domain.Models.Products
+namespace Domain.Models.Users
 {
     public class AlarmPrice
     {

@@ -13,6 +13,7 @@ namespace Domain.Models.Products
             _productRepository = repository;
         }
 
+        //irá ser utilizado para o sistema de atualização automatica.
         public void UpdateProductPrice(string idMLB, double newPrice)
         {    
             using (var db = new AcheBaratoContext())
