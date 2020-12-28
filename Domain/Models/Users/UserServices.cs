@@ -26,7 +26,7 @@ namespace Domain.src.Users
 
         public User ObterUsuario(Guid idUser)
         {
-            return _userRepository.GetElement(user => user.UserId == idUser);
+            return _userRepository.GetElement(user => user.Id == idUser);
         }
 
         [Obsolete("What the fuck is it, vinicius?")]
@@ -39,7 +39,7 @@ namespace Domain.src.Users
                 return (false, Guid.Empty);
             }
 
-            return (true, newuser.UserId);
+            return (true, newuser.Id);
         }
 
         

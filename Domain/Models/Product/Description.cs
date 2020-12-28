@@ -1,6 +1,8 @@
+using Domain.Models.Entities;
+
 namespace Domain.Models.Products
 {
-    public class Description
+    public class Description : Entity
     {
         public string IdMLB { get; set; }
         public string Name { get; set; }

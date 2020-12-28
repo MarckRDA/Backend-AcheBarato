@@ -45,21 +45,25 @@ namespace Domain.ApiMLBConnection.Consumers
 
             JArray cathegories = JArray.Parse(response.Content.ReadAsStringAsync().Result);
 
-            var list = new List<Cathegory>();
+            var cathegoryList = new List<Cathegory>();
+            
 
             foreach (var item in cathegories)
             {
-                list.Add(new Cathegory(item["id"].ToString())
+                var cathegoryChildremList = GetCathegoriesChildrendById(item["id"].ToString());
+                 
+                cathegoryList.Add(new Cathegory(item["id"].ToString())
                             {
-                                NameMLB = item["name"].ToString()
+                                NameMLB = item["name"].ToString(),
+                                CathegoriesChildren = cathegoryChildremList
                             });
             }
 
-            return list;
+            return cathegoryList;
 
         }
 
-        public static List<CathegoryChild> GetCathegoriesChildrendById(string cathegoryId)
+        private static List<CathegoryChild> GetCathegoriesChildrendById(string cathegoryId)
         {
             string action = BaseUrl + $"/categories/{cathegoryId}";
 

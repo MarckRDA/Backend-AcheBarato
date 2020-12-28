@@ -1,4 +1,3 @@
-using Domain.src.Users;
 
 namespace WebAPI.Users
 {

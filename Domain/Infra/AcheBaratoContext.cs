@@ -10,8 +10,11 @@ namespace Domain.Infra
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<HistorycalPrice> HistoricalPrices { get; set; }
+        public DbSet<Description> Descriptions { get; set; }
         public DbSet<Cathegory> Cathegories { get; set; }
+        public DbSet<CathegoryChild> CathegoryChildren { get; set; }
+        public DbSet<AlarmPrice> AlarmPrices { get; set; }
+        public DbSet<HistorycalPrice> HistoricalPrices { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

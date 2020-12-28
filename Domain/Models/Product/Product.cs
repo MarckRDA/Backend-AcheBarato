@@ -4,6 +4,7 @@ using Domain.Models.Cathegories;
 using Domain.Models.Entities;
 
 namespace Domain.Models.Products
+
 {
     public class Product : Entity
     {

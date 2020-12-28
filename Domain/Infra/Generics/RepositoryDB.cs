@@ -1,8 +1,9 @@
 using System;
+using Domain.Models.Entities;
 
-namespace Domain.Infra
+namespace Domain.Infra.Generics
 {
-    public class RepositoryDB<T> : IRepository<T> where T : class
+    public class RepositoryDB<T> : IRepository<T> where T : Entity
     {
         public void add(T entity)
         {
