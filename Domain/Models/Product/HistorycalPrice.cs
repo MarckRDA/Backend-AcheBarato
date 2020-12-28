@@ -13,7 +13,7 @@ namespace Domain.Models.Products
         {
             Id = Guid.NewGuid();
             Product = product;
-            DateOfPrice = dateOfPrice;
+            DateOfPrice = new DateTime();
             PriceOfThatDay = priceOfThatDay;
         }
     }
