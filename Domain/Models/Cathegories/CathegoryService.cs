@@ -33,7 +33,19 @@ namespace Domain.Models.Cathegories
 
         public List<CathegoryChildDTO> GetCathegoryChildren(string idMLBCathegory)
         {
-            throw new KeyNotFoundException();
+            var cathegoryChildrenList = _cathegoryRepository.GetCathegoryChildren(idMLBCathegory);
+            var cathegoryChildrenDTOList = new List<CathegoryChildDTO>();
+
+            foreach (var cathegoryChild in cathegoryChildrenList)
+            {
+                cathegoryChildrenDTOList.Add(new CathegoryChildDTO()
+                                            {
+                                                IdMLB = cathegoryChild.IdMLB,
+                                                NameMLB = cathegoryChild.NameMLB
+                                            });
+            }
+
+            return cathegoryChildrenDTOList;
         }
 
         private void PostCathgoriesInDB()
