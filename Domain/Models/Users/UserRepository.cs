@@ -28,7 +28,7 @@ namespace Domain.src.Users
         {
             using (var _context = new AcheBaratoContext())
             {
-                return _context.Users.FirstOrDefault(u => u.UserId == idUser);
+                return _context.Users.FirstOrDefault(u => u.Id == idUser);
             }
         }
 
