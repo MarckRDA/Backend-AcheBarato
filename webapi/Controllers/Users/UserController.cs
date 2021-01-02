@@ -1,7 +1,8 @@
 using System;
 using Domain.Crypt;
 using Domain.Models.Crypt;
-using Domain.Models.Users;using Domain.Models.Users;
+using Domain.Models.Users;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 

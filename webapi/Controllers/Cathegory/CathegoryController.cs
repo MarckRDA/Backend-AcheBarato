@@ -16,9 +16,9 @@ namespace webapi.Controllers.Cathegory
         }
 
         [HttpGet("{idCathgory}")]
-        public IActionResult GetCathegoryChildren(string idCathgory)
+        public IActionResult GetCathegoryChildren(string idCathegory)
         {
-            return Ok(_cathegoryService.GetCathegoryChildren(idCathgory));
+            return Ok(_cathegoryService.GetCathegoryChildren(idCathegory));
         }
 
     }
