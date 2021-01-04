@@ -8,7 +8,17 @@ namespace Domain.Infra.Mapping
     {
         public void Configure(EntityTypeBuilder<AlarmPrice> builder)
         {
-            
+            builder
+            .HasKey(product => product.Id);
+
+            builder
+            .Property(product => product.WishPrice)
+            .IsRequired();
+
+             builder
+            .Property(product => product.ProductToMonitor)
+            .IsRequired();
+
         }
     }
 }

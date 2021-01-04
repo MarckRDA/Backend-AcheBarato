@@ -15,6 +15,8 @@ namespace Domain.Infra.Mapping
             builder
             .Property(description => description.PriceOfThatDay)
             .IsRequired();
+
+            
         }
     }
 }
