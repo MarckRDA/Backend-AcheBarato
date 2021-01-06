@@ -9,6 +9,10 @@ namespace Domain.Models.Products
         public Product Product { get; private set; }
         public double PriceOfThatDay { get; set; }
 
+        public HistorycalPrice()
+        {
+            
+        }
         public HistorycalPrice(Product product, DateTime dateOfPrice, double priceOfThatDay )
         {
             Id = Guid.NewGuid();

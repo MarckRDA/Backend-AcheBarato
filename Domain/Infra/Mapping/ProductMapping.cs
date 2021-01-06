@@ -27,13 +27,6 @@ namespace Domain.Infra.Mapping
             .Property(product => product.LinkRedirectShop)
             .IsRequired();
 
-            builder
-            .Property(product => product.Cathegory)
-            .IsRequired();
-
-            builder
-            .Property(product => product.Tags)
-            .IsRequired();
         }
     }
 }

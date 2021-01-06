@@ -15,9 +15,6 @@ namespace Domain.Infra.Mapping
             .Property(product => product.WishPrice)
             .IsRequired();
 
-             builder
-            .Property(product => product.ProductToMonitor)
-            .IsRequired();
 
         }
     }

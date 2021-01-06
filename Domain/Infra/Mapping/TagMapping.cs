@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Domain.Infra.Mapping
 {
-    public class DescriptionMapping : IEntityTypeConfiguration<Description>
+    public class TagMapping : IEntityTypeConfiguration<Tag>
     {
-        public void Configure(EntityTypeBuilder<Description> builder)
+        public void Configure(EntityTypeBuilder<Tag> builder)
         {
             builder
-            .Property(description => description.Value)
+            .Property(tag => tag.Name)
             .IsRequired();
 
         }

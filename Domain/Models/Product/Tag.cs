@@ -3,16 +3,14 @@ using Domain.Models.Entities;
 
 namespace Domain.Models.Products
 {
-    public class Description : Entity
+    public class Tag : Entity
     {
         public string Name { get; set; }
-        public string Value { get; set; }
-
-        public Description(string name, string value)
+        public Product Product { get; set; }
+        
+        public Tag()
         {
             Id = Guid.NewGuid();
-            Name = name;
-            Value = value;
         }
     }
 }

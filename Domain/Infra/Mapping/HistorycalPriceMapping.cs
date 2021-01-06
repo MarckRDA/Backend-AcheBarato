@@ -8,6 +8,7 @@ namespace Domain.Infra.Mapping
     {
         public void Configure(EntityTypeBuilder<HistorycalPrice> builder)
         {
+            
             builder
             .Property(hp => hp.DateOfPrice)
             .IsRequired();

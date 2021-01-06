@@ -3,7 +3,7 @@ using Domain.Models.Entities;
 
 namespace Domain.Infra.Generics
 {
-    public class RepositoryDB<T> : IRepository<T> where T : Entity
+    public class RepositoryDB<T> : IRepository<T> where T : class
     {
         public void add(T entity)
         {

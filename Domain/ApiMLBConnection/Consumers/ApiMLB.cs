@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Domain.ApiMLBConnection.Instance;
 using Domain.ApiMLBConnection.Interfaces;
-using Domain.Models.Cathegories;
 using Domain.Models.Products;
 using Newtonsoft.Json.Linq;
 
@@ -28,55 +27,22 @@ namespace Domain.ApiMLBConnection.Consumers
 
         }
 
-        //I'm gonna change that signature.... Let me thing over that
+
         private static JObject GetProductByMLBId(string idMLB)
         {
             string action = BaseUrl + $"/items/{idMLB}";
             return GetMethodHandler(action);
         }
 
-        public static List<Cathegory> GetCathegories()
-        {
-            string action = BaseUrl + "/sites/MLB/categories";
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, action);
 
-            HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
-
-            JArray cathegories = JArray.Parse(response.Content.ReadAsStringAsync().Result);
-
-            var cathegoryList = new List<Cathegory>();
-            
-
-            foreach (var item in cathegories)
-            {
-                var cathegoryChildremList = GetCathegoriesChildrendById(item["id"].ToString());
-                 
-                cathegoryList.Add(new Cathegory(item["id"].ToString())
-                            {
-                                NameMLB = item["name"].ToString(),
-                                CathegoriesChildren = cathegoryChildremList
-                            });
-            }
-
-            return cathegoryList;
-
-        }
-
-        private static List<CathegoryChild> GetCathegoriesChildrendById(string cathegoryId)
+        private static string GetCathegoriesChildrendById(string cathegoryId)
         {
             string action = BaseUrl + $"/categories/{cathegoryId}";
 
-            var cathegories = (JArray)GetMethodHandler(action)["children_categories"];
+            var cathegories = GetMethodHandler(action);
 
-            var cathegorieIn = new List<CathegoryChild>();
-
-            foreach (var cathegory in cathegories)
-            {
-                //cathegorieIn.Add(cathegory.ToString());
-            }
-
-            return cathegorieIn;
+            return cathegories["name"].ToString();
         }
 
         public static List<Product> GetProductsByCathegory(string cathegoryId)
@@ -100,26 +66,38 @@ namespace Domain.ApiMLBConnection.Consumers
             {
                 if (pd["seller"]["seller_reputation"]["power_seller_status"].ToString() == "platinum")
                 {
-                    var createTag = pd["title"].ToString().Split(",");
-                    
-                    foreach (var tag in createTag)
+                    var createTag = pd["title"].ToString();
+
+                    var tagList = new List<Tag>();
+
+                    var tagsSplited = createTag.Split(' ');
+
+                    foreach (var tag in tagsSplited)
                     {
-                        tag.ToUpper();
+                        tagList.Add(new Tag() { Name = tag.ToUpper() });
                     }
-                    
+
                     var productFullInformation = GetProductByMLBId(pd["id"].ToString());
-                    var  titleProduct = productFullInformation["title"].ToString();
+
+                    var titleProduct = productFullInformation["title"].ToString();
+
                     var idMLBProduct = productFullInformation["id"].ToString();
+
                     var cathegoryMLB = productFullInformation["category_id"].ToString();
+
                     var priceProduct = productFullInformation["price"].ToString();
+
                     var redirLink = productFullInformation["permalink"].ToString();
+
                     var thumbnailPic = productFullInformation["thumbnail"].ToString();
-                    var listPicture = new List<string>();
+
+                    var listPicture = new List<Picture>();
+
                     var pics = productFullInformation["pictures"];
 
                     foreach (var pic in pics)
                     {
-                        listPicture.Add(pic["url"].ToString());
+                        listPicture.Add(new Picture() { LinkPicture = pic["url"].ToString() });
                     }
 
                     var listDescriptions = productFullInformation["attributes"];
@@ -127,26 +105,29 @@ namespace Domain.ApiMLBConnection.Consumers
 
                     foreach (var description in listDescriptions)
                     {
-                        listDescriptionsObject.Add(new Description(description["id"].ToString(), 
-                                                                description["name"].ToString(),
+                        if (description["name"].ToString() == "Marca")
+                        {
+                            tagList.Add(new Tag() { Name = description["value_name"].ToString().ToUpper() });
+                        }
+
+                        listDescriptionsObject.Add(new Description(description["name"].ToString(),
                                                                  description["value_name"].ToString()));
                     }
 
                     productsWithTrustedSellers.Add(new Product()
-                                                    {
-                                                        Name = titleProduct,
-                                                        ProductIdMLB = idMLBProduct,
-                                                        Price = double.Parse(priceProduct),
-                                                        ThumbImgLink = thumbnailPic,
-                                                        LinkRedirectShop = redirLink,
-                                                        Cathegory = new Cathegory(cathegoryMLB),
-                                                        Pictures = listPicture,
-                                                        Descriptions = listDescriptionsObject,
-                                                        Tags = createTag
-                                                    });
+                    {
+                        Name = titleProduct,
+                        ProductIdMLB = idMLBProduct,
+                        Price = double.Parse(priceProduct),
+                        ThumbImgLink = thumbnailPic,
+                        LinkRedirectShop = redirLink,
+                        Cathegory = GetCathegoriesChildrendById(cathegoryMLB),
+                        Pictures = listPicture,
+                        Descriptions = listDescriptionsObject,
+                        Tags = tagList
+                    });
                 }
 
-                
             }
 
             return productsWithTrustedSellers;

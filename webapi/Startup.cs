@@ -1,6 +1,5 @@
 using Domain.Infra;
 using Domain.Infra.Generics;
-using Domain.Models.Cathegories;
 using Domain.Models.Products;
 using Domain.Models.Users;
 using Domain.src.Users;
@@ -35,8 +34,8 @@ namespace webapi
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductServices, ProductServices>();
 
-            services.AddScoped<ICathegoryRepository, CathegoryRepository>();
-            services.AddScoped<ICathegoryService, CathegoryService>();
+            // services.AddScoped<ICathegoryRepository, CathegoryRepository>();
+            // services.AddScoped<ICathegoryService, CathegoryService>();
 
         }
 

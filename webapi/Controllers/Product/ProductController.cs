@@ -18,8 +18,8 @@ namespace webapi.Product
         [HttpGet]
         public IActionResult GetSearch(string q)
         {
-            var searching = this.Request.QueryString.ToString();
-            return Ok(_productServices.GetAllProduct(searching));
+            var products = _productServices.GetAllProduct(q); 
+            return Ok(products);
         }
 
         [HttpGet("{idMLBProduct}")]
