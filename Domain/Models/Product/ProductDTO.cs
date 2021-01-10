@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-
+using Domain.Models.Descriptions;
+using Domain.Models.HistorycalPrices;
 
 namespace Domain.Models.Products
 {
@@ -9,7 +10,7 @@ namespace Domain.Models.Products
         public string Name { get; set; }
         public double Price { get; set; }
         public string ImgLink { get; set; }
-        public List<Picture> Pictures { get; set; }
+        public List<string> Pictures { get; set; }
         public string LinkRedirectShop { get; set; }
         public string Cathegory { get; set; }
         public List<Description> Descriptions { get; set; }

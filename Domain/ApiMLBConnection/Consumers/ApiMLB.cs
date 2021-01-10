@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Domain.ApiMLBConnection.Instance;
 using Domain.ApiMLBConnection.Interfaces;
+using Domain.Models.Descriptions;
 using Domain.Models.Products;
 using Newtonsoft.Json.Linq;
 
@@ -27,6 +28,18 @@ namespace Domain.ApiMLBConnection.Consumers
 
         }
 
+        public static List<Product> GetProductsByCathegory(string cathegoryId)
+        {
+            string action = $"/sites/MLB/search?category={cathegoryId}";
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseUrl + action);
+
+            HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
+
+            JArray product = (JArray)JObject.Parse(response.Content.ReadAsStringAsync().Result)["results"];
+
+            return GetBestSellers(product);
+        }
 
         private static JObject GetProductByMLBId(string idMLB)
         {
@@ -45,18 +58,6 @@ namespace Domain.ApiMLBConnection.Consumers
             return cathegories["name"].ToString();
         }
 
-        public static List<Product> GetProductsByCathegory(string cathegoryId)
-        {
-            string action = $"/sites/MLB/search?category={cathegoryId}";
-
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseUrl + action);
-
-            HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
-
-            JArray product = (JArray)JObject.Parse(response.Content.ReadAsStringAsync().Result)["results"];
-
-            return GetBestSellers(product);
-        }
 
         private static List<Product> GetBestSellers(JArray json2Filter)
         {
@@ -64,18 +65,9 @@ namespace Domain.ApiMLBConnection.Consumers
 
             foreach (var pd in json2Filter)
             {
-                if (pd["seller"]["seller_reputation"]["power_seller_status"].ToString() == "platinum")
+                if (pd["seller"]["seller_reputation"]["power_seller_status"].ToString() == "platinum" || pd["seller"]["seller_reputation"]["power_seller_status"].ToString() == "gold")
                 {
-                    var createTag = pd["title"].ToString();
-
-                    var tagList = new List<Tag>();
-
-                    var tagsSplited = createTag.Split(' ');
-
-                    foreach (var tag in tagsSplited)
-                    {
-                        tagList.Add(new Tag() { Name = tag.ToUpper() });
-                    }
+                    var createTag = pd["title"].ToString().ToUpper();
 
                     var productFullInformation = GetProductByMLBId(pd["id"].ToString());
 
@@ -91,41 +83,43 @@ namespace Domain.ApiMLBConnection.Consumers
 
                     var thumbnailPic = productFullInformation["thumbnail"].ToString();
 
-                    var listPicture = new List<Picture>();
-
                     var pics = productFullInformation["pictures"];
 
-                    foreach (var pic in pics)
-                    {
-                        listPicture.Add(new Picture() { LinkPicture = pic["url"].ToString() });
-                    }
-
                     var listDescriptions = productFullInformation["attributes"];
+                    
                     var listDescriptionsObject = new List<Description>();
 
                     foreach (var description in listDescriptions)
                     {
                         if (description["name"].ToString() == "Marca")
                         {
-                            tagList.Add(new Tag() { Name = description["value_name"].ToString().ToUpper() });
+                            createTag += " " + description["value_name"].ToString().ToUpper();
                         }
 
                         listDescriptionsObject.Add(new Description(description["name"].ToString(),
                                                                  description["value_name"].ToString()));
                     }
 
-                    productsWithTrustedSellers.Add(new Product()
+                    var getProductFromAPIToDB = new Product(titleProduct, 
+                                                            idMLBProduct, 
+                                                            double.Parse(priceProduct),
+                                                            thumbnailPic, 
+                                                            redirLink, 
+                                                            GetCathegoriesChildrendById(cathegoryMLB), 
+                                                            createTag.Split(' '));
+
+                    
+                    foreach (var description in listDescriptionsObject)
                     {
-                        Name = titleProduct,
-                        ProductIdMLB = idMLBProduct,
-                        Price = double.Parse(priceProduct),
-                        ThumbImgLink = thumbnailPic,
-                        LinkRedirectShop = redirLink,
-                        Cathegory = GetCathegoriesChildrendById(cathegoryMLB),
-                        Pictures = listPicture,
-                        Descriptions = listDescriptionsObject,
-                        Tags = tagList
-                    });
+                        getProductFromAPIToDB.AddDescription(description);
+                    }
+
+                    foreach (var pic in pics)
+                    {
+                        getProductFromAPIToDB.AddPicture(pic["url"].ToString());
+                    }
+
+                    productsWithTrustedSellers.Add(getProductFromAPIToDB);
                 }
 
             }
