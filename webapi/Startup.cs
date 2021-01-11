@@ -1,14 +1,14 @@
-using Domain.Infra;
-using Domain.Infra.Generics;
-using Domain.Models.Products;
-using Domain.Models.Users;
-using Domain.src.Users;
+using Domain.Infra.Mapping;
+using Domain.Infra.Repository;
+using Domain.Interfaces;
+using Domain.Services;
+using Domain.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace webapi
 {
@@ -24,29 +24,29 @@ namespace webapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
-            services.AddScoped(typeof(IRepository<>), typeof(RepositoryDB<>));
+            services.Configure<MongoSettings>(
+                Configuration.GetSection(nameof(MongoSettings)));
             
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserServices, UserServices>();
-            
+            services.AddScoped<IMongoSettings>(sp =>
+                sp.GetRequiredService<IOptions<MongoSettings>>().Value);
+                       
+            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductServices, ProductServices>();
 
-            // services.AddScoped<ICathegoryRepository, CathegoryRepository>();
-            // services.AddScoped<ICathegoryService, CathegoryService>();
+            services.AddControllers();
+            
+            ProductMap.Configure();
 
+            UserMap.Configure();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            using (var db = new AcheBaratoContext())
-            {
-                db.Database.Migrate();    
-            }
-
+           
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -63,5 +63,7 @@ namespace webapi
                 endpoints.MapControllers();
             });
         }
+
+        
     }
 }

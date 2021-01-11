@@ -26,17 +26,27 @@ namespace Domain.Infra.Repository
             _repository.add(entity);
         }
 
+        public void AddManyProductsAtOnce(List<Product> products)
+        {
+            _collection.InsertMany(products);
+        }
+
         public IEnumerable<Product> GetAllElements()
         {
             return _repository.GetAllElements();
         }
 
-        public IEnumerable<Product> GetFilterProductsByName(string search)
+        public List<string> GetCathegories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public (IEnumerable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(string search)
         {
             var splitedSearch = search.ToUpper().Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries).ToList();
             var filter = Builders<Product>.Filter.All(x => x.Tag, splitedSearch);
             var p =_collection.Find(filter).ToList();
-            return p;
+            return (p, p.Count > 0);
         }
 
         public Product GetProductById(Guid idProduct)
