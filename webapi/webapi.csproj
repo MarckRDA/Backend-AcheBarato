@@ -4,6 +4,14 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Cronos" Version="0.7.0" />
+    <PackageReference Include="HangFire" Version="1.7.18" />
+    <PackageReference Include="HangFire.Mongo" Version="0.7.17" />
+  </ItemGroup>
+
+
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>

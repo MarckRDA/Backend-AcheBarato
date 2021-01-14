@@ -123,6 +123,24 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Cronos": {
+              "target": "Package",
+              "version": "[0.7.0, )"
+            },
+            "HangFire": {
+              "target": "Package",
+              "version": "[1.7.18, )"
+            },
+            "HangFire.Mongo": {
+              "target": "Package",
+              "version": "[0.7.17, )"
+            },
+            "Microsoft.AspNetCore.OData": {
+              "target": "Package",
+              "version": "[8.0.0-preview3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
