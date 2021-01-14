@@ -52,5 +52,12 @@ namespace Domain.Models.Products
         {
             HistorycalṔrices.Add(hpItem);
         }
+
+        public void UpdateProductPrice(double newPrice)
+        {
+            Price = newPrice;
+        }
+
+        
     }
 }
