@@ -42,7 +42,7 @@ namespace Domain.Models.Products
 
         public ProductDTO GetProductDTOById(Guid idProduct)
         {
-            var gotProductFromDB = _repository.GetProductById(idProduct);
+            var gotProductFromDB = _repository.GetEntityById(x => x.id_product, idProduct);
             
             return new ProductDTO()
             {
