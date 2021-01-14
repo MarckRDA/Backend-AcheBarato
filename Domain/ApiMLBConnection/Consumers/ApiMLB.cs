@@ -5,7 +5,6 @@ using Domain.ApiMLBConnection.Interfaces;
 using Domain.Models.Cathegories;
 using Domain.Models.Descriptions;
 using Domain.Models.Products;
-using MongoDB.Driver;
 using Newtonsoft.Json.Linq;
 
 namespace Domain.ApiMLBConnection.Consumers
@@ -20,12 +19,7 @@ namespace Domain.ApiMLBConnection.Consumers
             }
         }
 
-        private static IMongoCollection<Product> _collection;
-        public ApiMLB()
-        {
-             
-        }
-
+        
         public static List<Product> GetProducts(string productSearch)
         {
             string action = BaseUrl + $"/sites/MLB/search?q={productSearch}";
@@ -49,13 +43,18 @@ namespace Domain.ApiMLBConnection.Consumers
             return GetBestSellers(product);
         }
 
-        private static JObject GetProductByMLBId(string idMLB)
+        public static JObject GetProductByMLBId(string idMLB)
         {
             string action = BaseUrl + $"/items/{idMLB}";
             return GetMethodHandler(action);
         }
 
-        public static void PutProductsInBackGround()
+        public static double FindWhetherProductPriceChanges(string idMLB)
+        {
+            return double.Parse(GetProductByMLBId(idMLB)["price"].ToString());
+        }
+
+        public static List<List<Product>> PutProductsInBackGround()
         {
             string action = BaseUrl + $"/sites/MLB/categories";
             
@@ -64,14 +63,15 @@ namespace Domain.ApiMLBConnection.Consumers
             HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
 
             var product = JArray.Parse(response.Content.ReadAsStringAsync().Result);
-            var database = new MongoClient("mongodb://root:AcheBaratoMongoDB2021!@localhost:27017").GetDatabase("AcheBarato");
-            _collection = database.GetCollection<Product>("Products");
-   
+            var listProducts = new List<List<Product>>();
+               
             for (int index = 0; index < product.Count; index++)
             {
                 var productsToPutDB = GetProductsByCathegory(product[index]["id"].ToString());
-                _collection.InsertManyAsync(productsToPutDB);
-            }  
+                listProducts.Add(productsToPutDB);
+            }
+
+            return listProducts;  
         } 
 
         private static string GetCathegoriesChildrendById(string cathegoryId)

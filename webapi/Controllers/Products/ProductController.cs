@@ -1,11 +1,9 @@
 using System;
 using System.Linq;
-using Domain.Interfaces;
 using Domain.Models.Products;
-using Domain.Products;
 using Microsoft.AspNetCore.Mvc;
 
-namespace webapi.Products
+namespace webapi.Controllers.Products
 {
     [ApiController]
 

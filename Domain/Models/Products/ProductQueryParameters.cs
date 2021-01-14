@@ -1,4 +1,4 @@
-namespace Domain.Products
+namespace Domain.Models.Products
 {
     public class ProductQueryParameters 
     {
