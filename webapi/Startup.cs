@@ -1,6 +1,6 @@
-using System;
 using Domain.Common;
 using Domain.Models.Products;
+using Domain.Models.Users;
 using Hangfire;
 using Hangfire.Mongo;
 using Hangfire.Mongo.Migration.Strategies;
@@ -39,6 +39,8 @@ namespace webapi
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductServices, ProductServices>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
           
            var mongoUrlBuilder = new MongoUrlBuilder("mongodb://root:AcheBaratoMongoDB2021!@localhost:27017");
            var mongoClient = new MongoClient(mongoUrlBuilder.ToMongoUrl());
