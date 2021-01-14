@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Domain.Common;
 using Domain.Models.Cathegories;
 using Domain.Models.Descriptions;
@@ -58,17 +60,16 @@ namespace Infra.Repository
            return _collection.AsQueryable().Where(x => x.Cathegory.Name == category).ToList();
         }
 
-        public Product GetProductById(Guid idProduct)
-        {
-            var filterProduct = Builders<Product>.Filter.Eq(x => x.id_product.ToString(), idProduct.ToString());
-            return _collection.Find(filterProduct).FirstOrDefault();
-        }
-
         public List<Description> GetProductDescription(Guid idProduct)
         {
-            var product = GetProductById(idProduct);
+            var product = GetEntityById(x => x.id_product, idProduct);
 
             return product.Descriptions;
-        }    
+        }
+
+        public Product GetEntityById(Expression<Func<Product, Guid>> function, Guid value)
+        {
+            return _repository.GetEntityById(function, value);
+        }
     }
 }
