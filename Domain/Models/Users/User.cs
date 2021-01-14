@@ -2,30 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Domain.Attributes;
 using Domain.Models.AlarmPrices;
 using Domain.Models.Products;
 
 namespace Domain.Models.Users
 {
+    [BsonCollection("Users")]
     public class User 
     {
-        public string Id { get; private set; }
+        public Guid Id { get; private set; } = new Guid();
         public string Name { get; private set; }
         public string Email { get; private set; }
+        public Profile Profile { get; private set; }
         public string Password { get; private set; }
-        public IReadOnlyCollection<Product> WishListProducts => _wishListProducts;
-        private List<Product> _wishListProducts;
-        public IReadOnlyCollection<AlarmPrice> WishProductsAlarmPrices => _wishProductsAlarmPrices; 
-        private List<AlarmPrice> _wishProductsAlarmPrices;
+        public List<Product> WishListProducts {get; private set;} = new List<Product>();
+        public List<AlarmPrice> WishProductsAlarmPrices {get; private set;} = new List<AlarmPrice>();
 
-        public User(string name, string email, string password)
+        public User(string name, string email, string password, Profile profile)
         {
-            Id = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid();
             Name = name;
             Email = email;
+            Profile = profile;
             Password = password;
-            _wishListProducts = new List<Product>();
-            _wishProductsAlarmPrices = new List<AlarmPrice>();
         }
 
         private bool ValidateEmail()
@@ -39,12 +39,12 @@ namespace Domain.Models.Users
 
         public void AddProductInWishList(Product productToPutIn)
         {
-            _wishListProducts.Add(productToPutIn);
+            WishListProducts.Add(productToPutIn);
         }
 
         public void AddAlarmPrice(AlarmPrice alarm)
         {
-            _wishProductsAlarmPrices.Add(alarm);
+            WishProductsAlarmPrices.Add(alarm);
         }
 
         private bool ValidateName()
