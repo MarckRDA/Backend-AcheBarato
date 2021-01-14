@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Domain.ApiMLBConnection.Consumers;
 using Domain.Interfaces;
+using Domain.Models.Cathegories;
 using Domain.Models.Products;
+using Domain.Products;
 
 namespace Domain.Services
 {
@@ -16,18 +19,28 @@ namespace Domain.Services
         }
 
 
-        public IEnumerable<Product> GetAllProduct(string search)
+        public IQueryable<Product> GetAllProduct(ProductQueryParameters parameters)
         {
-            var productInDB = _repository.GetFilterProductsByName(search);
+            var productInDB = _repository.GetFilterProductsByName(parameters);
             
             if (!productInDB.isThereAnyProductsInBD)
             {
-                PostProductInDB(search);
-                return _repository.GetFilterProductsByName(search).products;
+                PostProductInDB(parameters.Search);
+                return _repository.GetFilterProductsByName(parameters).products;
             }
 
             return productInDB.products;
          
+        }
+
+        public List<Product> GetProductsByCategory(string category)
+        {
+            return _repository.GetProductsByCategories(category);
+        }
+
+        public List<Cathegory> GetCathegories()
+        {
+            return _repository.GetCathegories();
         }
 
         public ProductDTO GetProductDTOById(Guid idProduct)

@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Interfaces;
+using Domain.Models.Cathegories;
+using Domain.Models.Descriptions;
 using Domain.Models.Products;
+using Domain.Products;
 using MongoDB.Driver;
 
 namespace Domain.Infra.Repository
@@ -36,24 +39,37 @@ namespace Domain.Infra.Repository
             return _repository.GetAllElements();
         }
 
-        public List<string> GetCathegories()
+        public List<Cathegory> GetCathegories()
         {
-            throw new NotImplementedException();
+            return _collection.AsQueryable().Select(x => x.Cathegory).Distinct().ToList();
+            
         }
 
-        public (IEnumerable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(string search)
+        public (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters parameters)
         {
-            var splitedSearch = search.ToUpper().Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var filter = Builders<Product>.Filter.All(x => x.Tag, splitedSearch);
-            var p =_collection.Find(filter).ToList();
-            return (p, p.Count > 0);
+            var splitedSearch = parameters.Search.ToUpper().Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var builder =Builders<Product>.Filter;
+            var filterTag = builder.All(x => x.Tag, splitedSearch) & builder.Gte(p => p.Price, parameters.MinPrice) & builder.Lte(p => p.Price, parameters.MaxPrice);
+            var p =_collection.Find(filterTag).ToList().AsQueryable();
+            return (p, p.Count() > 10);
+        }
+
+        public List<Product> GetProductsByCategories(string category)
+        {
+           return _collection.AsQueryable().Where(x => x.Cathegory.Name == category).ToList();
         }
 
         public Product GetProductById(Guid idProduct)
         {
-            var filterProduct = Builders<Product>.Filter.Eq(x => x.Id, idProduct.ToString());
+            var filterProduct = Builders<Product>.Filter.Eq(x => x.id_product.ToString(), idProduct.ToString());
             return _collection.Find(filterProduct).FirstOrDefault();
         }
-            
+
+        public List<Description> GetProductDescription(Guid idProduct)
+        {
+            var product = GetProductById(idProduct);
+
+            return product.Descriptions;
+        }    
     }
 }
