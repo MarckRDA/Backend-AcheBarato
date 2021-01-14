@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Domain.Attributes;
 using Domain.Common;
 using MongoDB.Driver;
@@ -33,6 +35,12 @@ namespace Infra.Repository
         public virtual IEnumerable<TEntity> GetAllElements()
         {
             return _collection.AsQueryable().ToList();
+        }
+
+        public TEntity GetEntityById(Expression<Func<TEntity,Guid>> function, Guid value)
+        {
+            var filter = Builders<TEntity>.Filter.Eq(function, value);
+            return _collection.Find(filter).FirstOrDefault();
         }
     }
 
