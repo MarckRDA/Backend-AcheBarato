@@ -57,7 +57,7 @@ namespace Domain.Models.Products
         {
             Price = newPrice;
         }
-
+        
         
     }
 }
