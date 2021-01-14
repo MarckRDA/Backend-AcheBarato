@@ -8,7 +8,7 @@ namespace webapi.Controllers.Products
     [ApiController]
 
     [Route("achebarato/[Controller]")]
-    public class ProductsController : Controller
+    public class ProductsController : ControllerBase
     {
         private readonly IProductServices _productServices;
 
@@ -18,26 +18,30 @@ namespace webapi.Controllers.Products
         }
 
         [HttpGet]
-        //[EnableQuery]
         public IQueryable<Product> GetSearch([FromQuery]ProductQueryParameters parameters)
         {
             return _productServices.GetAllProduct(parameters).OrderBy(x => x.Price); 
         }
 
-        [HttpGet("{idMLBProduct}")]
-        public IActionResult GetProducyById(Guid idMLBProduct)
+        [HttpGet("{idProduct}")]
+        public IActionResult GetProducyById(Guid idProduct)
         {
-            return Ok(_productServices.GetProductDTOById(idMLBProduct));
+            return Ok(_productServices.GetProductDTOById(idProduct));
         }
 
-        [HttpGet("cathegories")]
+        [HttpGet("categories")]
         public IActionResult GetCathegories()
         {
             return Ok(_productServices.GetCathegories());
         }
 
+        [HttpGet("{idProduct}/descriptions")]
+        public IActionResult GetProductDescriptions(Guid idProduct)
+        {
+            return Ok(_productServices.GetProductDTOById(idProduct).Descriptions);
+        }
 
-        [HttpGet("cathegories/{category}")]
+        [HttpGet("categories/{category}")]
         public IActionResult GetCathegories(string category)
         {
             return Ok(_productServices.GetProductsByCategory(category));
