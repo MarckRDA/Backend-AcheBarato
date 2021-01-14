@@ -1,12 +1,12 @@
-using Domain.Infra.Mapping;
-using Domain.Infra.Repository;
-using Domain.Interfaces;
-using Domain.Services;
-using Domain.Settings;
+using System;
+using Domain.Common;
+using Domain.Models.Products;
 using Hangfire;
 using Hangfire.Mongo;
 using Hangfire.Mongo.Migration.Strategies;
 using Hangfire.Mongo.Migration.Strategies.Backup;
+using Infra.Mapping;
+using Infra.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using webapi.Services;
+using webapi.Services.BackgroundService;
 
 namespace webapi
 {
@@ -39,8 +39,7 @@ namespace webapi
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductServices, ProductServices>();
-
-
+          
            var mongoUrlBuilder = new MongoUrlBuilder("mongodb://root:AcheBaratoMongoDB2021!@localhost:27017");
            var mongoClient = new MongoClient(mongoUrlBuilder.ToMongoUrl());
 
@@ -67,8 +66,6 @@ namespace webapi
             services.AddControllers();
             
             ProductMap.Configure();
-
-            //ApiMLB.PutProductsInBackGround();
 
             UserMap.Configure();
 
@@ -105,8 +102,9 @@ namespace webapi
 
         private void InitProcess()
         {
-            var division = new Division();
-            RecurringJob.AddOrUpdate(() => division.DivisionRandom(), Cron.Minutely());
+            var backbroundProductTasks = new ProductBackgroundTask();
+            BackgroundJob.Enqueue(() => backbroundProductTasks.PushProductsInDB());
+            RecurringJob.AddOrUpdate(() => backbroundProductTasks.MonitorPriceProducts(), Cron.Daily(19, 00));
         }
 
 
