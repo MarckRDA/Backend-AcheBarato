@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Common;
@@ -10,7 +9,6 @@ namespace Domain.Models.Products
     {
         (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters search);
 
-        Product GetProductById(Guid idProduct);
         
         void AddManyProductsAtOnce(List<Product> products);
 
