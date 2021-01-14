@@ -11,9 +11,9 @@ namespace Domain.Infra.Mapping
             {
                 map.AutoMap();
                 map.SetIgnoreExtraElements(true);
-                map.MapIdMember(x => x.Id);
+                map.MapIdMember(x => x.id_product);
                 map.MapMember(x => x.Name).SetIsRequired(true);
-                map.MapMember(x => x.ProductIdMLB).SetIsRequired(true);
+                map.MapMember(x => x.MLBId).SetIsRequired(true);
                 map.MapMember(x => x.Price).SetIsRequired(true);
                 map.MapMember(x => x.ThumbImgLink).SetIsRequired(true);
                 map.MapMember(x => x.Cathegory).SetIsRequired(true);
