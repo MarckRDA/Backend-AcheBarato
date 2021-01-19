@@ -30,6 +30,19 @@ namespace webapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+             services.AddCors(options =>
+            {
+                options.AddPolicy("achebarato",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin();
+                    }
+                );
+            });
+
             services.Configure<MongoSettings>(
                 Configuration.GetSection(nameof(MongoSettings)));
 
@@ -73,7 +86,6 @@ namespace webapi
 
 
         }
-
        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -83,7 +95,7 @@ namespace webapi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("achebarato");
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -106,6 +118,7 @@ namespace webapi
         {
             var backbroundProductTasks = new ProductBackgroundTask();
             BackgroundJob.Enqueue(() => backbroundProductTasks.PushProductsInDB());
+            BackgroundJob.Enqueue(() => backbroundProductTasks.PushTrendProductsInDB());
             RecurringJob.AddOrUpdate(() => backbroundProductTasks.MonitorPriceProducts(), Cron.Daily(19, 00));
         }
 

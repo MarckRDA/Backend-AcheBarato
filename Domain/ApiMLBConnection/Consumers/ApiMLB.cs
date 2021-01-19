@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using Domain.ApiMLBConnection.Instance;
 using Domain.ApiMLBConnection.Interfaces;
@@ -19,7 +20,16 @@ namespace Domain.ApiMLBConnection.Consumers
             }
         }
 
-        
+        public static string[] TrendSearchesInML { get; set; } = new string[]
+        {
+            "MLB1648",
+            "MLB1051",
+            "MLB5726",
+            "MLB1144",
+            "MLB1196"
+        };
+
+
         public static List<Product> GetProducts(string productSearch)
         {
             string action = BaseUrl + $"/sites/MLB/search?q={productSearch}";
@@ -27,6 +37,28 @@ namespace Domain.ApiMLBConnection.Consumers
             JArray products = (JArray)GetMethodHandler(action)["results"];
 
             return GetBestSellers(products);
+
+        }
+
+        public static List<List<Product>> GetTrendsProducts()
+        {
+            var products = new List<List<Product>>();
+            
+            foreach (var trend in TrendSearchesInML)
+            {
+
+                string action = BaseUrl + $"/trends/MLB/{trend}";
+
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, action);
+
+                HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
+
+                var keywordProductForSearch = JArray.Parse(response.Content.ReadAsStringAsync().Result)[1]["keyword"];
+
+                products.Add(GetProducts(keywordProductForSearch.ToString()).Take(10).ToList());
+            }
+
+            return products;
 
         }
 
@@ -49,6 +81,7 @@ namespace Domain.ApiMLBConnection.Consumers
             return GetMethodHandler(action);
         }
 
+
         public static double FindWhetherProductPriceChanges(string idMLB)
         {
             return double.Parse(GetProductByMLBId(idMLB)["price"].ToString());
@@ -57,22 +90,22 @@ namespace Domain.ApiMLBConnection.Consumers
         public static List<List<Product>> PutProductsInBackGround()
         {
             string action = BaseUrl + $"/sites/MLB/categories";
-            
+
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, action);
 
             HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
 
             var product = JArray.Parse(response.Content.ReadAsStringAsync().Result);
             var listProducts = new List<List<Product>>();
-               
+
             for (int index = 0; index < product.Count; index++)
             {
                 var productsToPutDB = GetProductsByCathegory(product[index]["id"].ToString());
                 listProducts.Add(productsToPutDB);
             }
 
-            return listProducts;  
-        } 
+            return listProducts;
+        }
 
         private static string GetCathegoriesChildrendById(string cathegoryId)
         {

@@ -48,10 +48,10 @@ namespace Domain.Models.Products
             {
                 Name = gotProductFromDB.Name,
                 Descriptions = gotProductFromDB.Descriptions,
-                ImgLink = gotProductFromDB.ThumbImgLink,
+                ThumbImgLink = gotProductFromDB.ThumbImgLink,
                 Pictures = gotProductFromDB.Pictures,
                 LinkRedirectShop = gotProductFromDB.LinkRedirectShop,
-                HistorycalPrices = gotProductFromDB.HistorycalṔrices,
+                HistorycalṔrices= gotProductFromDB.HistorycalṔrices,
                 Price = gotProductFromDB.Price,
                 Cathegory = gotProductFromDB.Cathegory
 
@@ -64,6 +64,34 @@ namespace Domain.Models.Products
 
             _repository.AddManyProductsAtOnce(products);
             
+        }
+
+        public IEnumerable<ProductDTO> GetTrendProductsDTO()
+        {
+            var productsToProductsDTO = _repository.GetTrendProducts();
+            var trendsProductsDTO = new List<ProductDTO>();
+
+            foreach (var product in productsToProductsDTO)
+            {
+                trendsProductsDTO.Add(new ProductDTO()
+                {
+                    Name = product.Name,
+                    id_product = product.id_product,
+                    Cathegory = product.Cathegory,
+                    Descriptions = product.Descriptions,
+                    HistorycalṔrices = product.HistorycalṔrices,
+                    isTrending = product.isTrending,
+                    LinkRedirectShop = product.LinkRedirectShop,
+                    MLBId = product.MLBId,
+                    Pictures = product.Pictures,
+                    Price = product.Price,
+                    Tag = product.Tag,
+                    ThumbImgLink = product.ThumbImgLink
+                                        
+                });
+            }
+
+            return trendsProductsDTO;
         }
     }
 
