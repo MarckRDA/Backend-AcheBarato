@@ -10,7 +10,7 @@ namespace Domain.Models.Products
     {
         IQueryable<Product> GetAllProduct(ProductQueryParameters parameters);
         ProductDTO GetProductDTOById(Guid idProduct);
-
+        IEnumerable<ProductDTO> GetTrendProductsDTO();
         List<Cathegory> GetCathegories();       
 
         List<Product> GetProductsByCategory(string category);
