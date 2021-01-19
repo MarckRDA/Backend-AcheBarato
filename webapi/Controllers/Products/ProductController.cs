@@ -18,9 +18,15 @@ namespace webapi.Controllers.Products
         }
 
         [HttpGet]
-        public IQueryable<Product> GetSearch([FromQuery]ProductQueryParameters parameters)
+        public IQueryable<Product> GetSearch([FromQuery] ProductQueryParameters parameters)
         {
-            return _productServices.GetAllProduct(parameters).OrderBy(x => x.Price); 
+            return _productServices.GetAllProduct(parameters).OrderBy(x => x.Price).Take(10);
+        }
+
+        [HttpGet("trendproducts")]
+        public IActionResult GetTrendProducts()
+        {
+            return Ok(_productServices.GetTrendProductsDTO());
         }
 
         [HttpGet("{idProduct}")]
@@ -46,6 +52,6 @@ namespace webapi.Controllers.Products
         {
             return Ok(_productServices.GetProductsByCategory(category));
         }
-        
+
     }
 }
