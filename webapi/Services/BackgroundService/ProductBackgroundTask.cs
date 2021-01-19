@@ -34,6 +34,39 @@ namespace webapi.Services.BackgroundService
 
         }
 
+        public void PushTrendProductsInDB()
+        {
+             try
+            {
+                var productsToPush = ApiMLB.GetTrendsProducts();
+
+                foreach (var products in productsToPush)
+                {
+                    foreach (var product in products)
+                    {
+                        product.isTrending = true;
+                    }
+                    _collection.InsertManyAsync(products);
+                }
+            }
+            catch (System.Exception e)
+            {
+                throw new System.Exception($"erro: {e.Message}");
+            }
+        }
+
+        public void CleanTrendsProducts()
+        {
+            var findTrendProductsInDay = Builders<Product>.Filter.Eq(pd => pd.isTrending, true);
+            var productsToCleanTrends = _collection.Find(findTrendProductsInDay).ToList();
+            foreach (var product in productsToCleanTrends)
+            {
+                product.isTrending = false;
+                _collection.ReplaceOne(p => p.id_product == product.id_product, product);
+            }
+
+        }
+
         public void MonitorPriceProducts()
         {
             var productsInDB = _collection.AsQueryable().ToList();
