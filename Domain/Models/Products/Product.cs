@@ -22,6 +22,7 @@ namespace Domain.Models.Products
         public List<HistorycalPrice> HistorycalṔrices {get; private set;}
         public List<string> Pictures {get; private set;}
         public string[] Tag {get; private set;}
+        public bool isTrending {get; set;}
 
         public Product(string name, string productIdMLB, double price, string thumbImgLink, string linkRedirectShop, Cathegory cathegory, string[] tag)
         {
