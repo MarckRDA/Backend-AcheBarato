@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Domain.Attributes;
+using Domain.Models.Cathegories;
 using Domain.Models.Descriptions;
 using Domain.Models.HistorycalPrices;
 
@@ -10,23 +11,23 @@ namespace Domain.Models.Products
     [BsonCollection("Products")]
     public class Product 
     {
-        public string Id { get; private set; }
-        public string ProductIdMLB { get; private set; }
+        public Guid id_product { get; private set; } = new Guid();
+        public string MLBId { get; private set; }
         public string Name { get; private set; }
         public double Price { get; private set; }
         public string ThumbImgLink { get; private set; }
         public string LinkRedirectShop { get; private set; }
-        public string Cathegory { get; private set; }
+        public Cathegory Cathegory { get; private set; }
         public List<Description> Descriptions {get; private set;}
         public List<HistorycalPrice> HistorycalṔrices {get; private set;}
         public List<string> Pictures {get; private set;}
         public string[] Tag {get; private set;}
 
-        public Product(string name, string productIdMLB, double price, string thumbImgLink, string linkRedirectShop, string cathegory, string[] tag)
+        public Product(string name, string productIdMLB, double price, string thumbImgLink, string linkRedirectShop, Cathegory cathegory, string[] tag)
         {
-            Id = Guid.NewGuid().ToString();
+            id_product = Guid.NewGuid();
             Name = name;
-            ProductIdMLB = productIdMLB;
+            MLBId = productIdMLB;
             Price = price;
             ThumbImgLink = thumbImgLink;
             LinkRedirectShop = linkRedirectShop;
@@ -51,5 +52,12 @@ namespace Domain.Models.Products
         {
             HistorycalṔrices.Add(hpItem);
         }
+
+        public void UpdateProductPrice(double newPrice)
+        {
+            Price = newPrice;
+        }
+        
+        
     }
 }

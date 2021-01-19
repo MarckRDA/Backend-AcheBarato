@@ -36,16 +36,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.0, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -56,13 +46,9 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
-            "MongoDB.Driver": {
+            "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[2.11.5, )"
-            },
-            "ServiceStack.core": {
-              "target": "Package",
-              "version": "[5.10.2, )"
+              "version": "[12.0.3, )"
             }
           },
           "imports": [

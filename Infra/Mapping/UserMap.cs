@@ -1,7 +1,7 @@
 using Domain.Models.Users;
 using MongoDB.Bson.Serialization;
 
-namespace Domain.Infra.Mapping
+namespace Infra.Mapping
 {
     public class UserMap
     {
@@ -15,6 +15,8 @@ namespace Domain.Infra.Mapping
                 map.MapMember(x => x.Name).SetIsRequired(true);
                 map.MapMember(x => x.Email).SetIsRequired(true);
                 map.MapMember(x => x.Password).SetIsRequired(true);
+                map.MapMember(x => x.WishListProducts).SetIsRequired(true);
+                map.MapMember(x => x.WishProductsAlarmPrices).SetIsRequired(true);
             });
         }
     }
