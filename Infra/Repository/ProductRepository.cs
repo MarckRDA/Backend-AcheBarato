@@ -51,11 +51,17 @@ namespace Infra.Repository
             
         }
 
+        public List<Product> GetRelatedProducts(Guid idProduct)
+        {
+            var productToBasedOnItsCategory = GetEntityById(pd => pd.id_product, idProduct);
+            return GetProductsByCategories(productToBasedOnItsCategory.Cathegory.Name);
+        }
+
         public (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters parameters)
         {
             var splitedSearch = parameters.Search.ToUpper().Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries).ToList();
             var builder =Builders<Product>.Filter;
-            var filterTag = builder.All(x => x.Tag, splitedSearch) & builder.Gte(p => p.Price, parameters.MinPrice) & builder.Lte(p => p.Price, parameters.MaxPrice);
+            var filterTag = builder.AnyIn(x => x.Tag, splitedSearch) & builder.Gte(p => p.Price, parameters.MinPrice) & builder.Lte(p => p.Price, parameters.MaxPrice);
             var p =_collection.Find(filterTag).ToList().AsQueryable();
             return (p, p.Count() > 10);
         }
