@@ -8,7 +8,7 @@ namespace Domain.Models.Products
 {
     public class ProductDTO
     {
-       public Guid id_product { get; set; } 
+        public Guid id_product { get; set; } 
         public string MLBId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }

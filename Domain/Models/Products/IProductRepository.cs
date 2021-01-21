@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Common;
@@ -8,6 +9,8 @@ namespace Domain.Models.Products
     public interface IProductRepository : IMongoRepository<Product>
     {
         (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters search);
+
+        List<Product> GetRelatedProducts(Guid idProduct);
 
         IEnumerable<Product> GetTrendProducts();
         void AddManyProductsAtOnce(List<Product> products);
