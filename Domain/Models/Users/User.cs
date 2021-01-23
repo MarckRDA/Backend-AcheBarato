@@ -18,7 +18,8 @@ namespace Domain.Models.Users
         public string Password { get; private set; }
         public List<Product> WishListProducts {get; private set;} = new List<Product>();
         public List<AlarmPrice> WishProductsAlarmPrices {get; private set;} = new List<AlarmPrice>();
-
+        
+        public bool IsActive = true;
         public User(string name, string email, string password, Profile profile)
         {
             Id = Guid.NewGuid();
