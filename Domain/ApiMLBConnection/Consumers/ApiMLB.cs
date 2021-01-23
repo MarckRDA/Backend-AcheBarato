@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -6,7 +5,6 @@ using Domain.ApiMLBConnection.Instance;
 using Domain.ApiMLBConnection.Interfaces;
 using Domain.Models.Cathegories;
 using Domain.Models.Descriptions;
-using Domain.Models.HistorycalPrices;
 using Domain.Models.Products;
 using Newtonsoft.Json.Linq;
 
@@ -45,7 +43,7 @@ namespace Domain.ApiMLBConnection.Consumers
         public static List<List<Product>> GetTrendsProducts()
         {
             var products = new List<List<Product>>();
-
+            
             foreach (var trend in TrendSearchesInML)
             {
 
@@ -153,7 +151,10 @@ namespace Domain.ApiMLBConnection.Consumers
 
                         foreach (var description in listDescriptions)
                         {
-                            createTag += " " + description["value_name"].ToString().ToUpper();
+                            if (description["name"].ToString() == "Marca")
+                            {
+                                createTag += " " + description["value_name"].ToString().ToUpper();
+                            }
 
                             listDescriptionsObject.Add(new Description(description["name"].ToString(),
                                                                      description["value_name"].ToString()));
@@ -179,7 +180,6 @@ namespace Domain.ApiMLBConnection.Consumers
                         }
 
                         productsWithTrustedSellers.Add(getProductFromAPIToDB);
-                        getProductFromAPIToDB.AddHistoricalPrice(new HistorycalPrice(double.Parse(priceProduct), DateTime.Now.ToShortDateString()));
                     }
                 }
                 catch (System.Exception)
