@@ -5408,19 +5408,19 @@
     ]
   },
   "packageFolders": {
-    "/home/rodrigo/.nuget/packages/": {}
+    "/home/marckrda/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj",
+      "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj",
-      "packagesPath": "/home/rodrigo/.nuget/packages/",
-      "outputPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/obj/",
+      "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
+      "packagesPath": "/home/marckrda/.nuget/packages/",
+      "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/rodrigo/.nuget/NuGet/NuGet.Config"
+        "/home/marckrda/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5430,6 +5430,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -5441,6 +5442,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
@@ -5472,7 +5474,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
       }
     }
   }
