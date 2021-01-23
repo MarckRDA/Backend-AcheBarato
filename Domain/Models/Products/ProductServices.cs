@@ -37,12 +37,9 @@ namespace Domain.Models.Products
         }
         public List<ProductDTO> GetRelatedProductsDTO(Guid idProduct)
         {
-            var relatedProducts = _repository.GetRelatedProducts(idProduct);
-            var relatedProductsToDTO = new List<ProductDTO>();
-
-            foreach (var relatedproduct in relatedProducts)
-            {
-                relatedProductsToDTO.Add(new ProductDTO()
+            return _repository
+                .GetRelatedProducts(idProduct)
+                .Select(relatedproduct => new ProductDTO
                 {
                     Name = relatedproduct.Name,
                     id_product = relatedproduct.id_product,
@@ -56,10 +53,8 @@ namespace Domain.Models.Products
                     HistorycalṔrices = relatedproduct.HistorycalṔrices,
                     Price = relatedproduct.Price,
                     Cathegory = relatedproduct.Cathegory
-                });
-
-            }
-            return relatedProductsToDTO;
+                })
+                .ToList();
         }
 
 
