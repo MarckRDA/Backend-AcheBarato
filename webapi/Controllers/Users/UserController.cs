@@ -23,7 +23,8 @@ namespace webapi.Controllers.Users
         {
             return userservices.GetUser(idUser);
         }
-        [HttpPost("Login")]
+       
+        [HttpPost("login")]
         public ActionResult<dynamic> Authenticate(UserRequest request)
         {
             StringValues usuarioId;
@@ -55,13 +56,13 @@ namespace webapi.Controllers.Users
             };
         }
 
-         [HttpPost]
+        [HttpPost]
         public IActionResult PostUsuario(UserRequest request)
         {
             var md5 = new Crypt();
             //recebe o password encriptografado
             var cryptoPassword = md5.RetornarMD5(request.Password);
-            var userAdded = userservices.CreateUser(request.Name, cryptoPassword, request.Email,request.Profile);
+            var userAdded = userservices.CreateUser(request.Name, cryptoPassword, request.Email, Profile.Client);
 
             if (!userAdded.Validate().isValid)
             {
