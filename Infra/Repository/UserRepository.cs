@@ -29,5 +29,7 @@ namespace Infra.Repository
         {
             return _repository.GetEntityById(function, value);
         }
+        
+        
     }
 }

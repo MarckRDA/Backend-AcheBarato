@@ -12,14 +12,33 @@ namespace Domain.Models.Users
             _repository = repository;    
         }
 
-        public (bool isValid, Guid id) AddUser(string name, string password, string email)
+        public (bool isValid, Guid id) AddUser(string name, string password, string email,Profile profile )
         {
-            throw new NotImplementedException();
+            var newUSer = CreateUser(name, password, email,profile);
+
+            if (newUSer == null)
+            {
+                return (false, Guid.Empty);
+            }
+
+            return (true, newUSer.Id);       
+            
+             }
+
+        public User CreateUser(string name, string password, string email,Profile profile)
+        {
+            {
+
+            var newUser = new User(name, password, email);
+            if (newUser.Validate().isValid)
+            {
+                _repository.add(newUser);
+                return newUser;
+            }
+
+            return null;
         }
 
-        public User CreateUser(string name, string password, string email)
-        {
-            throw new NotImplementedException();
         }
 
         public User GetUser(Guid idUser)

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y1vJ4Np3iRFA+n76s2IE1S186DNLJtcWSAYzv9rdklWlWDSb0k/YBma5WUuubkV8qy5mzfCuiPIn/G6Vk2twIQ==",
+  "dgSpecHash": "LrFu9M+9drmtuC98boVf7N+wlC2cUrmQp8lCRX6U4nQDfJXcLhr1IbTB5rr2jwwbv0+U0VrKtZQ/+ipkvRd3TA==",
   "success": true,
-  "projectFilePath": "/media/rodrigo/Dados/dev/Backend-AcheBarato/webapi/webapi.csproj",
+  "projectFilePath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/webapi/webapi.csproj",
   "expectedPackageFiles": [
     "/home/rodrigo/.nuget/packages/cronos/0.7.0/cronos.0.7.0.nupkg.sha512",
     "/home/rodrigo/.nuget/packages/dnsclient/1.3.1/dnsclient.1.3.1.nupkg.sha512",

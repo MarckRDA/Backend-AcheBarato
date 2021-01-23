@@ -9651,11 +9651,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/media/rodrigo/Dados/dev/Backend-AcheBarato/webapi/webapi.csproj",
+      "projectUniqueName": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/webapi/webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "/media/rodrigo/Dados/dev/Backend-AcheBarato/webapi/webapi.csproj",
+      "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/webapi/webapi.csproj",
       "packagesPath": "/home/rodrigo/.nuget/packages/",
-      "outputPath": "/media/rodrigo/Dados/dev/Backend-AcheBarato/webapi/obj/",
+      "outputPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/webapi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/rodrigo/.nuget/NuGet/NuGet.Config"
@@ -9669,11 +9669,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/media/rodrigo/Dados/dev/Backend-AcheBarato/Domain/Domain.csproj": {
-              "projectPath": "/media/rodrigo/Dados/dev/Backend-AcheBarato/Domain/Domain.csproj"
+            "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj": {
+              "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj"
             },
-            "/media/rodrigo/Dados/dev/Backend-AcheBarato/Infra/Infra.csproj": {
-              "projectPath": "/media/rodrigo/Dados/dev/Backend-AcheBarato/Infra/Infra.csproj"
+            "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Infra/Infra.csproj": {
+              "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Infra/Infra.csproj"
             }
           }
         }
