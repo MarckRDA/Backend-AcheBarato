@@ -75,7 +75,7 @@ namespace webapi.Services.BackgroundService
             {
                 var price = ApiMLB.FindWhetherProductPriceChanges(product.MLBId);
                 product.UpdateProductPrice(price);
-                product.AddHistoricalPrice(new HistorycalPrice(price, DateTime.Now));
+                product.AddHistoricalPrice(new HistorycalPrice(price, DateTime.Now.ToShortDateString()));
                 try
                 {
                     _collection.ReplaceOneAsync(
