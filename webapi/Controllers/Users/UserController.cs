@@ -3,7 +3,6 @@ using Domain.Crypt;
 using Domain.Models.Crypt;
 using Domain.Models.Users;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
 
 namespace webapi.Controllers.Users
 {
@@ -23,36 +22,29 @@ namespace webapi.Controllers.Users
         {
             return userservices.GetUser(idUser);
         }
-       
+
         [HttpPost("login")]
         public ActionResult<dynamic> Authenticate(UserRequest request)
         {
-            StringValues usuarioId;
             var md5 = new Crypt();
+            var getedUSer = userservices.GetUserByEmail(request.Email);
 
-            if (!Request.Headers.TryGetValue("UserId", out usuarioId))
+            if (getedUSer == null)
             {
                 return Unauthorized();
             }
-
-            var getedUSer = userservices.GetUser(Guid.Parse(usuarioId));
 
             if (getedUSer.Email != request.Email || !md5.ComparaMD5(request.Password, getedUSer.Password))
             {
                 return Unauthorized();
             }
 
-            if (getedUSer == null)
-            {
-               return Unauthorized(); 
-            }
-
             var token = TokenServices.GerarToken(getedUSer);
 
             return new
-            {
-                usuario = getedUSer,
-                token = token
+            { 
+                token = token.ToString(),
+                userId = getedUSer.Id 
             };
         }
 
@@ -72,6 +64,6 @@ namespace webapi.Controllers.Users
             return Ok(userAdded.Id);
         }
 
-     }
-    
+    }
+
 }

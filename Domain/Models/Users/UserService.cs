@@ -45,5 +45,10 @@ namespace Domain.Models.Users
         {
             return _repository.GetEntityById(x => x.Id, idUser);
         }
+
+        public User GetUserByEmail(string userEmail)
+        {
+            return _repository.GetUserByEmail(userEmail);
+        }
     }
 }
