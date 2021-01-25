@@ -42,6 +42,7 @@ namespace Infra.Repository
             var filter = Builders<TEntity>.Filter.Eq(function, value);
             return _collection.Find(filter).FirstOrDefault();
         }
+        
     }
 
 }
