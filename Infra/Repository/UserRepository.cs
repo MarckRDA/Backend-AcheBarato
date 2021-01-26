@@ -37,7 +37,10 @@ namespace Infra.Repository
         {
             return _repository.GetEntityById(function, value);
         }
-        
+        public void UpdateUserInformations(User userToUpdate)
+        {
+           _collection.ReplaceOne(user => user.Id == userToUpdate.Id, userToUpdate);
+        }
         public User GetUserByEmail(string userEmail)
         {
             var filter = Builders<User>.Filter.Eq(x => x.Email, userEmail);

@@ -1,7 +1,9 @@
 using System;
 using Domain.Crypt;
 using Domain.Models.Crypt;
+using Domain.Models.Products;
 using Domain.Models.Users;
+using Domain.src.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace webapi.Controllers.Users
@@ -40,12 +42,27 @@ namespace webapi.Controllers.Users
             }
 
             var token = TokenServices.GerarToken(getedUSer);
+            
+            var userDTO = new UserDTO()
+            {
+                UserId = getedUSer.Id,
+                Name = getedUSer.Name,
+                WishListProducts = getedUSer.WishListProducts,
+                WishProductsAlarmPrices = getedUSer.WishProductsAlarmPrices
+            };
 
             return new
             { 
                 token = token.ToString(),
-                userId = getedUSer.Id 
+                user = userDTO
             };
+        }
+
+        [HttpPost("/postalarmprice")]
+        public IActionResult PostAlarmPrice(Guid userId, Product product, double priceToMonitor)
+        {
+            userservices. UpdateAlarmPriceProductInformations(userId, product, priceToMonitor);
+            return NoContent();
         }
 
         [HttpPost]
@@ -61,7 +78,7 @@ namespace webapi.Controllers.Users
                 return Unauthorized();
             }
 
-            return Ok(userAdded.Id);
+            return Ok();
         }
 
     }

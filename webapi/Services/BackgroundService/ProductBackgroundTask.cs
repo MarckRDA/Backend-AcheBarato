@@ -36,7 +36,7 @@ namespace webapi.Services.BackgroundService
 
         public void PushTrendProductsInDB()
         {
-             try
+            try
             {
                 var productsToPush = ApiMLB.GetTrendsProducts();
 
@@ -73,22 +73,22 @@ namespace webapi.Services.BackgroundService
 
             foreach (var product in productsInDB)
             {
-                var price = ApiMLB.FindWhetherProductPriceChanges(product.MLBId);
-                product.UpdateProductPrice(price);
-                product.AddHistoricalPrice(new HistorycalPrice(price, DateTime.Now.ToShortDateString()));
                 try
                 {
+                    var price = ApiMLB.FindWhetherProductPriceChanges(product.MLBId);
+                    product.UpdateProductPrice(price);
+                    product.AddHistoricalPrice(new HistorycalPrice(price, DateTime.Now.ToShortDateString()));
                     _collection.ReplaceOneAsync(
                     p => p.id_product == product.id_product,
                     product
-                );    
+                );
                 }
                 catch (System.Exception ex)
                 {
-                    
+
                     throw new Exception($"Error in monitor price {ex.Message}");
                 }
-                
+
             }
         }
     }

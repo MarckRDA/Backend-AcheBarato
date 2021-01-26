@@ -1,5 +1,6 @@
 using System;
-using System.Threading.Tasks;
+using Domain.Models.AlarmPrices;
+using Domain.Models.Products;
 
 namespace Domain.Models.Users
 {
@@ -49,6 +50,13 @@ namespace Domain.Models.Users
         public User GetUserByEmail(string userEmail)
         {
             return _repository.GetUserByEmail(userEmail);
+        }
+
+        public void UpdateAlarmPriceProductInformations(Guid userId,  Product products, double priceToMonitor)
+        {
+            var userToUpdateAlarmPrice = GetUser(userId);
+            userToUpdateAlarmPrice.AddAlarmPrice(new AlarmPrice(products, priceToMonitor));
+            _repository.UpdateUserInformations(userToUpdateAlarmPrice);
         }
     }
 }

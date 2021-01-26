@@ -1,23 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Domain.Models.AlarmPrices;
+using Domain.Models.Products;
 
 namespace Domain.src.Users
 {
     public class UserDTO
     {
-        public Guid Id { get; set; }        
-        public bool EValido { get; set; }        
-        public List<string> Error { get; set; }
-
-        public UserDTO(Guid idUser)
-        {
-           EValido = true;
-           Id = idUser;
-        }
-
-        public UserDTO(List<string> erros)
-        {
-             Error = erros;
-        }
+        public Guid UserId { get; set; }
+        public string Name { get; set; }
+        public List<Product> WishListProducts {get; set;} 
+        public List<AlarmPrice> WishProductsAlarmPrices {get; set;}
     }    
 }
