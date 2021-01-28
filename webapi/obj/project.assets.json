@@ -9646,19 +9646,19 @@
     ]
   },
   "packageFolders": {
-    "/home/marckrda/.nuget/packages/": {}
+    "/home/rodrigo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
+      "projectUniqueName": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/webapi/webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
-      "packagesPath": "/home/marckrda/.nuget/packages/",
-      "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/obj/",
+      "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/webapi/webapi.csproj",
+      "packagesPath": "/home/rodrigo/.nuget/packages/",
+      "outputPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/webapi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/marckrda/.nuget/NuGet/NuGet.Config"
+        "/home/rodrigo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -9668,13 +9668,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
-              "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj"
+            "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj": {
+              "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj"
             },
-            "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj": {
-              "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj"
+            "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Infra/Infra.csproj": {
+              "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Infra/Infra.csproj"
             }
           }
         }
@@ -9687,7 +9686,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Cronos": {
             "target": "Package",
@@ -9720,7 +9718,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
       }
     }
   }
