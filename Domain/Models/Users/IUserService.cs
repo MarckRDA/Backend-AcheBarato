@@ -1,5 +1,4 @@
 using System;
-using Domain.Models.Products;
 
 namespace Domain.Models.Users
 {
@@ -9,6 +8,6 @@ namespace Domain.Models.Users
         User GetUser(Guid idUser);
         (bool isValid, Guid id) AddUser(string name, string password, string emai, Profile profile);
         User GetUserByEmail(string userEmail);
-        void  UpdateAlarmPriceProductInformations(Guid userId, Product products, double priceToMonitor);
+        bool UpdateAlarmPriceProductInformations(Guid userId, Guid productId, double priceToMonitor);
     }
 }
