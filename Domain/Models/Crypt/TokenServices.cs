@@ -11,7 +11,7 @@ namespace Domain.Models.Crypt
 {
     public static class TokenServices
     {
-        public static string GerarToken(User usuario)
+        public static string GerarToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(SecretString.Secret);
@@ -19,8 +19,8 @@ namespace Domain.Models.Crypt
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.Name),
-                    //new Claim(ClaimTypes.Role, usuario.Perfil.ToString())
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Role, user.Profile.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
