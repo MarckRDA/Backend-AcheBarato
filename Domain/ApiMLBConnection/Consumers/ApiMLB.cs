@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -5,6 +6,7 @@ using Domain.ApiMLBConnection.Instance;
 using Domain.ApiMLBConnection.Interfaces;
 using Domain.Models.Cathegories;
 using Domain.Models.Descriptions;
+using Domain.Models.HistorycalPrices;
 using Domain.Models.Products;
 using Newtonsoft.Json.Linq;
 
@@ -173,6 +175,8 @@ namespace Domain.ApiMLBConnection.Consumers
                         {
                             getProductFromAPIToDB.AddDescription(description);
                         }
+
+                        getProductFromAPIToDB.AddHistoricalPrice(new HistorycalPrice(double.Parse(priceProduct), DateTime.Now.ToShortDateString()));
 
                         foreach (var pic in pics)
                         {
