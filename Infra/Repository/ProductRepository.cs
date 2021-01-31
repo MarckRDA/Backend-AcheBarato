@@ -6,6 +6,7 @@ using Domain.Common;
 using Domain.Models.Cathegories;
 using Domain.Models.Descriptions;
 using Domain.Models.Products;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 namespace Infra.Repository
@@ -13,14 +14,14 @@ namespace Infra.Repository
     public class ProductRepository : IProductRepository
     {
         private readonly IMongoRepository<Product> _repository;
-        private readonly IMongoSettings _settings;
         private readonly IMongoCollection<Product> _collection;
+        private readonly IConfiguration _configuration;
 
-        public ProductRepository(IMongoRepository<Product> repository, IMongoSettings settings)
+        public ProductRepository(IMongoRepository<Product> repository, IConfiguration configuration)
         {
             _repository = repository;
-            _settings = settings;
-            var database = new MongoClient("mongodb://root:AcheBaratoMongoDB2021!@localhost:27017").GetDatabase("AcheBarato");
+            _configuration = configuration;
+            var database = new MongoClient(_configuration.GetValue<string>("MongoSettings:Connection")).GetDatabase(_configuration.GetValue<string>("MongoSettings:DatabaseName"));
             _collection = database.GetCollection<Product>("Products");
         }
 

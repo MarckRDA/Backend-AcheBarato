@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Domain.Common;
 using Domain.Models.Users;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 namespace Infra.Repository
@@ -10,16 +11,13 @@ namespace Infra.Repository
     public class UserRepository : IUserRepository
     {
         private readonly IMongoRepository<User> _repository;
-        private readonly IMongoSettings _settings;
         private readonly IMongoCollection<User> _collection;
-
-
-
-        public UserRepository(IMongoRepository<User> repository, IMongoSettings settings)
+        private readonly IConfiguration _configuration;
+        public UserRepository(IMongoRepository<User> repository, IConfiguration configuration)
         {
             _repository = repository;
-             _settings = settings;
-            var database = new MongoClient("mongodb://root:AcheBaratoMongoDB2021!@localhost:27017").GetDatabase("AcheBarato");
+            _configuration = configuration;
+           var database = new MongoClient(_configuration.GetValue<string>("MongoSettings:Connection")).GetDatabase(_configuration.GetValue<string>("MongoSettings:DatabaseName"));
             _collection = database.GetCollection<User>("Users");
         }
 
@@ -39,7 +37,7 @@ namespace Infra.Repository
         }
         public void UpdateUserInformations(User userToUpdate)
         {
-           _collection.ReplaceOne(user => user.Id == userToUpdate.Id, userToUpdate);
+            _collection.ReplaceOne(user => user.Id == userToUpdate.Id, userToUpdate);
         }
         public User GetUserByEmail(string userEmail)
         {
@@ -47,6 +45,6 @@ namespace Infra.Repository
             return _collection.Find(filter).FirstOrDefault();
 
         }
-        
+
     }
 }
