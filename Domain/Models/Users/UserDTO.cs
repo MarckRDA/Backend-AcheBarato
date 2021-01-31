@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Domain.Models.AlarmPrices;
 using Domain.Models.Products;
 
-namespace Domain.src.Users
+namespace Domain.Models.Users
 {
     public class UserDTO
     {
