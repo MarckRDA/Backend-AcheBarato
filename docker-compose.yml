@@ -25,6 +25,17 @@ services:
       - 27017:27017
     networks: 
       - mongo-compose-network
+  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: my_rabbitmq_secret
+      RABBITMQ_DEFAULT_USER: achebarato
+      RABBITMQ_DEFAULT_PASS: getout1123
+    ports:
+      - 5672:5672
+      - 15672:15672
 
 networks: 
   mongo-compose-network:
