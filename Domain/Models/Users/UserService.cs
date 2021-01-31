@@ -1,6 +1,5 @@
 using System;
 using Domain.Models.AlarmPrices;
-using Domain.Models.Products;
 
 namespace Domain.Models.Users
 {
@@ -52,11 +51,13 @@ namespace Domain.Models.Users
             return _repository.GetUserByEmail(userEmail);
         }
 
-        public void UpdateAlarmPriceProductInformations(Guid userId,  Product products, double priceToMonitor)
+        public bool UpdateAlarmPriceProductInformations(Guid userId,  Guid productId, double priceToMonitor)
         {
             var userToUpdateAlarmPrice = GetUser(userId);
-            userToUpdateAlarmPrice.AddAlarmPrice(new AlarmPrice(products, priceToMonitor));
+            if(userToUpdateAlarmPrice == null) return false;
+            userToUpdateAlarmPrice.AddAlarmPrice(new AlarmPrice(productId, priceToMonitor));
             _repository.UpdateUserInformations(userToUpdateAlarmPrice);
+            return true;
         }
     }
 }

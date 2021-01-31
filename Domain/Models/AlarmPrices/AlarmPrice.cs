@@ -1,17 +1,18 @@
-using Domain.Models.Products;
+using System;
 
 namespace Domain.Models.AlarmPrices
 {
     public class AlarmPrice 
     {
-        public Product ProductToMonitor { get; private set; } 
+        public Guid ProductToMonitorId { get; private set; } = new Guid();
         public double WishPrice { get; private set; }
-
-        public AlarmPrice(Product productToMonitor, double wishPrice)
+        
+        public AlarmPrice(Guid productToMonitorId, double wishPrice)
         {
-            ProductToMonitor = productToMonitor;
+            ProductToMonitorId = productToMonitorId;
             WishPrice = wishPrice;
         }
-    
+
+        public bool IsTheSamePrice(double productsPrice) => productsPrice == WishPrice;
     }
 }

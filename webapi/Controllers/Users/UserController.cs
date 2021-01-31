@@ -5,6 +5,7 @@ using Domain.Models.Products;
 using Domain.Models.Users;
 using Domain.src.Users;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
 namespace webapi.Controllers.Users
 {
@@ -48,7 +49,6 @@ namespace webapi.Controllers.Users
                 UserId = getedUSer.Id,
                 Name = getedUSer.Name,
                 WishListProducts = getedUSer.WishListProducts,
-                WishProductsAlarmPrices = getedUSer.WishProductsAlarmPrices
             };
 
             return new
@@ -58,10 +58,21 @@ namespace webapi.Controllers.Users
             };
         }
 
-        [HttpPost("/postalarmprice")]
-        public IActionResult PostAlarmPrice(Guid userId, Product product, double priceToMonitor)
+        [HttpPost("alarmsprice")]
+        public IActionResult PostAlarmPrice(AlarmPriceRequest request)
         {
-            userservices. UpdateAlarmPriceProductInformations(userId, product, priceToMonitor);
+            StringValues userId;
+
+            if (!Request.Headers.TryGetValue("userid", out userId))
+            {
+                return Unauthorized();
+            }
+
+            if (!userservices. UpdateAlarmPriceProductInformations(Guid.Parse(userId), request.ProductId, request.PriceToMonitor))
+            {
+                return Unauthorized();
+            }
+            
             return NoContent();
         }
 
