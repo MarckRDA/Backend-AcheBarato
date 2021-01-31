@@ -40,11 +40,7 @@ namespace webapi.Services.MessagerBrokers
                                      basicProperties: null,
                                      body: body);
 
-                Console.WriteLine(" [x] Sent {0}", message);
-
             }
-
-
         }
     }
 }
