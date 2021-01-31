@@ -121,6 +121,8 @@ namespace webapi.Services.BackgroundService
                     if (productInMonitoring == null) continue;
                     if (alarm.IsTheSamePrice(productInMonitoring.Price))
                     { 
+                        var linkRedirect =  $"https://localhost:3000/ProdutoEscolhido/{productInMonitoring.id_product}";
+
                         _messagerBroker.SendEntityToNotify(new SenderEntity(
                                                             user.Name,
                                                             user.Email,
@@ -128,7 +130,7 @@ namespace webapi.Services.BackgroundService
                                                             productInMonitoring.Name,
                                                             productInMonitoring.Price,
                                                             productInMonitoring.ThumbImgLink,
-                                                            $"https://localhost:3000/ProdutoEscolhido/{productInMonitoring.id_product}"
+                                                            linkRedirect
                         ));
                     }
 
