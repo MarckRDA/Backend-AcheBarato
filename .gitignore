@@ -139,6 +139,5 @@ volumes/
 
 Domain/obj
 webapi/obj
-webapi/appsettings.Development.json
 webapi/mono_crash.20ff24884b.0.json
 webapi/mono_crash.21acb2acb0.0.json

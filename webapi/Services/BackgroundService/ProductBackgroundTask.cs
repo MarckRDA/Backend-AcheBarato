@@ -1,21 +1,29 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Domain.ApiMLBConnection.Consumers;
 using Domain.Models.HistorycalPrices;
 using Domain.Models.Products;
+using Domain.Models.SenderEntities;
 using Domain.Models.Users;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using webapi.Services.MessagerBrokers;
 
 namespace webapi.Services.BackgroundService
 {
-    public class ProductBackgroundTask
+    public class ProductBackgroundTask : IProductBackgroundTask
     {
         private readonly IMongoCollection<Product> _collectionProducts;
         private readonly IMongoCollection<User> _collectionUsers;
-
-        public ProductBackgroundTask()
+        private readonly IMessagerBroker _messagerBroker;
+        private readonly IConfiguration _configuration;
+        public ProductBackgroundTask(IMessagerBroker messagerBroker, IConfiguration configuration)
         {
-            var database = new MongoClient("mongodb://root:AcheBaratoMongoDB2021!@localhost:27017").GetDatabase("AcheBarato");
+            _messagerBroker = messagerBroker;
+            _configuration = configuration;
+            var client = new MongoClient(_configuration.GetValue<string>("MongoSettings:Connection"));
+            var database = client.GetDatabase(_configuration.GetValue<string>("MongoSettings:DatabaseName"));
             _collectionProducts = database.GetCollection<Product>("Products");
             _collectionUsers = database.GetCollection<User>("Users");
         }
@@ -71,7 +79,7 @@ namespace webapi.Services.BackgroundService
 
         }
 
-        public void MonitorPriceProducts()
+        public Task MonitorPriceProducts()
         {
             var productsInDB = _collectionProducts.AsQueryable().ToList();
 
@@ -89,11 +97,14 @@ namespace webapi.Services.BackgroundService
                 }
                 catch (System.Exception ex)
                 {
-
+                    var filterDeleteProduct = Builders<Product>.Filter.Eq(product => product.id_product, product.id_product);
+                    _collectionProducts.DeleteOne(filterDeleteProduct);
                     throw new Exception($"Error in monitor price {ex.Message}");
                 }
 
             }
+
+            return Task.CompletedTask;
         }
 
         public void NotifyUserAboutAlarmPrice()
@@ -108,7 +119,20 @@ namespace webapi.Services.BackgroundService
                     var filterProduct = Builders<Product>.Filter.Eq(x => x.id_product, alarm.ProductToMonitorId);
                     var productInMonitoring = _collectionProducts.Find(filterProduct).FirstOrDefault();
                     if (productInMonitoring == null) continue;
-                    //if (alarm.IsTheSamePrice(productInMonitoring.Price)) SendNotificationEmail(user.Name, productInMonitoring)
+                    if (alarm.IsTheSamePrice(productInMonitoring.Price))
+                    { 
+                        var linkRedirect =  $"https://localhost:3000/ProdutoEscolhido/{productInMonitoring.id_product}";
+
+                        _messagerBroker.SendEntityToNotify(new SenderEntity(
+                                                            user.Name,
+                                                            user.Email,
+                                                            "999999999999",
+                                                            productInMonitoring.Name,
+                                                            productInMonitoring.Price,
+                                                            productInMonitoring.ThumbImgLink,
+                                                            linkRedirect
+                        ));
+                    }
 
                 }
             }

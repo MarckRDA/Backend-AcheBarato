@@ -1,6 +1,3 @@
-
-using Domain.Models.Users;
-
 namespace webapi.Controllers.Users
 {
     public class UserRequest

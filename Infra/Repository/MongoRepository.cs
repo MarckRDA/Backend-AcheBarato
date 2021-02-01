@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using Domain.Attributes;
 using Domain.Common;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 namespace Infra.Repository
@@ -12,10 +12,12 @@ namespace Infra.Repository
     public class MongoRepository<TEntity> : IMongoRepository<TEntity> where TEntity : class
     {
         private readonly IMongoCollection<TEntity> _collection;
+        private readonly IConfiguration _configuration;
 
-        public MongoRepository(IMongoSettings settings)
+        public MongoRepository(IConfiguration configuration)
         {
-            var database = new MongoClient("mongodb://root:AcheBaratoMongoDB2021!@localhost:27017").GetDatabase("AcheBarato");
+            _configuration = configuration;
+            var database = new MongoClient(_configuration.GetValue<string>("MongoSettings:Connection")).GetDatabase(_configuration.GetValue<string>("MongoSettings:DatabaseName"));
             _collection = database.GetCollection<TEntity>(GetCollectionName(typeof(TEntity)));
         }
 
@@ -37,12 +39,12 @@ namespace Infra.Repository
             return _collection.AsQueryable().ToList();
         }
 
-        public TEntity GetEntityById(Expression<Func<TEntity,Guid>> function, Guid value)
+        public TEntity GetEntityById(Expression<Func<TEntity, Guid>> function, Guid value)
         {
             var filter = Builders<TEntity>.Filter.Eq(function, value);
             return _collection.Find(filter).FirstOrDefault();
         }
-        
+
     }
 
 }
