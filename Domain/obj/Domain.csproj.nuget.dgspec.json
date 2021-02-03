@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj": {}
+    "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj": {}
   },
   "projects": {
-    "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj": {
+    "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj",
+        "projectUniqueName": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/Domain.csproj",
+        "projectPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj",
         "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Desktop/gitclone/Backend-AcheBarato/Domain/obj/",
+        "outputPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/rodrigo/.nuget/NuGet/NuGet.Config"
