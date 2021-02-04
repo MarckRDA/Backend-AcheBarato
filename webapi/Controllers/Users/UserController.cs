@@ -80,7 +80,7 @@ namespace webapi.Controllers.Users
             var md5 = new Crypt();
             //recebe o password encriptografado
             var cryptoPassword = md5.RetornarMD5(request.Password);
-            var userAdded = userservices.CreateUser(request.Name, cryptoPassword, request.Email, Profile.Client);
+            var userAdded = userservices.CreateUser(request.Name, cryptoPassword, request.Email, Profile.Client,request.CelPhone);
 
             if (!userAdded.Validate().isValid)
             {

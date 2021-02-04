@@ -14,6 +14,8 @@ namespace Domain.Models.Users
         public Guid Id { get; private set; } = new Guid();
         public string Name { get; private set; }
         public string Email { get; private set; }
+        public string CelPhone { get; private set; }
+        
         public Profile Profile { get; private set; }
         public string Password { get; private set; }
         public List<Product> WishListProducts {get; private set;} = new List<Product>();
@@ -26,13 +28,15 @@ namespace Domain.Models.Users
             Email = email;
             Profile = profile;
             Password = password;
+            
         }
 
-        public User(string name, string password, string email)
+        public User(string name, string password, string email,string celphone)
         {
             Name = name;
             Password = password;
             Email = email;
+            CelPhone = celphone;
         }
 
         private bool ValidateEmail()

@@ -12,9 +12,9 @@ namespace Domain.Models.Users
             _repository = repository;    
         }
 
-        public (bool isValid, Guid id) AddUser(string name, string password, string email,Profile profile )
+        public (bool isValid, Guid id) AddUser(string name, string password, string email,Profile profile, string celphone)
         {
-            var newUSer = CreateUser(name, password, email,profile);
+            var newUSer = CreateUser(name, password, email,profile,celphone);
 
             if (newUSer == null)
             {
@@ -25,11 +25,11 @@ namespace Domain.Models.Users
             
              }
 
-        public User CreateUser(string name, string password, string email,Profile profile)
+        public User CreateUser(string name, string password, string email,Profile profile,string celphone)
         {
             {
 
-            var newUser = new User(name, password, email);
+            var newUser = new User(name, password, email,celphone);
             if (newUser.Validate().isValid)
             {
                 _repository.add(newUser);
