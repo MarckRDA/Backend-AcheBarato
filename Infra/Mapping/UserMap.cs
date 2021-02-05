@@ -17,6 +17,8 @@ namespace Infra.Mapping
                 map.MapMember(x => x.Password).SetIsRequired(true);
                 map.MapMember(x => x.WishListProducts).SetIsRequired(true);
                 map.MapMember(x => x.WishProductsAlarmPrices).SetIsRequired(true);
+                map.MapMember(x => x.CelPhone).SetIsRequired(true);
+
             });
         }
     }
