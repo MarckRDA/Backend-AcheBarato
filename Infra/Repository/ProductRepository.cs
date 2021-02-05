@@ -48,7 +48,6 @@ namespace Infra.Repository
         public List<Cathegory> GetCathegories()
         {
             return _collection.AsQueryable().Select(x => x.Cathegory).Distinct().ToList();
-            
         }
 
         public List<Product> GetRelatedProducts(Guid idProduct)
@@ -59,16 +58,38 @@ namespace Infra.Repository
 
         public (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters parameters)
         {
-            var splitedSearch = parameters.Search.ToUpper().Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var builder =Builders<Product>.Filter;
+            var splitedSearch = parameters.Search.ToUpper().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var builder = Builders<Product>.Filter;
             var filterTag = builder.All(x => x.Tag, splitedSearch) & builder.Gte(p => p.Price, parameters.MinPrice) & builder.Lte(p => p.Price, parameters.MaxPrice);
-            var p =_collection.Find(filterTag).ToList().AsQueryable();
-            return (p, p.Count() > 10);
+            IQueryable<Product> p =  _collection.Find(filterTag).ToList().AsQueryable();; 
+            
+            var orderingFilter = parameters.OrderBy; 
+            
+            if (orderingFilter == "max")
+            {
+                p =  _collection.Find(filterTag).SortByDescending(x => x.Price).ToList().AsQueryable();
+            }
+            else if (orderingFilter == "min")
+            {
+                p =  _collection.Find(filterTag).SortBy(x => x.Price).ToList().AsQueryable();
+
+            }
+            else if (orderingFilter == "az")
+            {
+                p =  _collection.Find(filterTag).SortBy(x => x.Name).ToList().AsQueryable();
+            }
+            else if (orderingFilter == "za")
+            {
+                p =  _collection.Find(filterTag).SortByDescending(x => x.Name).ToList().AsQueryable();
+                
+            }
+
+            return (p, p.Count() > 5);
         }
 
         public List<Product> GetProductsByCategories(string category)
         {
-           return _collection.AsQueryable().Where(x => x.Cathegory.Name == category).ToList();
+            return _collection.AsQueryable().Where(x => x.Cathegory.IdMLB == category).ToList();
         }
 
         public List<Description> GetProductDescription(Guid idProduct)

@@ -190,6 +190,10 @@
             "HangFire.Mongo": {
               "target": "Package",
               "version": "[0.7.17, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.1, )"
             }
           },
           "imports": [

@@ -12,10 +12,9 @@ namespace Domain.Models.Products
         ProductDTO GetProductDTOById(Guid idProduct);
         IEnumerable<ProductDTO> GetTrendProductsDTO();
         List<ProductDTO> GetRelatedProductsDTO(Guid idProduct);
-
         List<Cathegory> GetCathegories();       
 
-        List<Product> GetProductsByCategory(string category);
+        List<Product>   GetProductsByCategory(string category);
 
     }
 }

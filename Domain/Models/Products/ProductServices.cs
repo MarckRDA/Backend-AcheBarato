@@ -18,12 +18,22 @@ namespace Domain.Models.Products
 
         public IQueryable<Product> GetAllProduct(ProductQueryParameters parameters)
         {
+            if (parameters.Search.StartsWith("MLB"))
+            {
+                return GetProductsByCategory(parameters.Search).AsQueryable();
+            }
+
+            if(!parameters.ValidateValuePrice())
+            {
+                throw new Exception("The ");
+            }
             var productInDB = _repository.GetFilterProductsByName(parameters);
 
             if (!productInDB.isThereAnyProductsInBD)
             {
                 PostProductInDB(parameters.Search);
                 var p = _repository.GetFilterProductsByName(parameters).products;
+                
                 return p;
             }
 
@@ -81,16 +91,13 @@ namespace Domain.Models.Products
                 HistorycalṔrices = gotProductFromDB.HistorycalṔrices,
                 Price = gotProductFromDB.Price,
                 Cathegory = gotProductFromDB.Cathegory
-
             };
         }
 
         private void PostProductInDB(string search)
         {
             var products = ApiMLB.GetProducts(search);
-
             _repository.AddManyProductsAtOnce(products);
-
         }
 
         public IEnumerable<ProductDTO> GetTrendProductsDTO()
@@ -114,7 +121,6 @@ namespace Domain.Models.Products
                     Price = product.Price,
                     Tag = product.Tag,
                     ThumbImgLink = product.ThumbImgLink
-
                 });
             }
 

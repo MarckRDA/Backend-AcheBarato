@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vnzNmCb/37QLXZ9eF/YcB+miJHS2oDyYB8VppZ4TgNbU6cJWuwgPaVaFKAfED0PDC38XB1hGZKy4PjqY5uglNA==",
+  "dgSpecHash": "iYy1II3LcVjzGNnAhxz3GIBXyiHLi2AH5uQKgGtyuZepOEHZJjRK8og4hJ8eEgzHV8U+lfCA6/5Dq/nbVPZZZA==",
   "success": true,
   "projectFilePath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
   "expectedPackageFiles": [
@@ -68,6 +68,7 @@
     "/home/marckrda/.nuget/packages/mongodb.libmongocrypt/1.0.0/mongodb.libmongocrypt.1.0.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/home/marckrda/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
+    "/home/marckrda/.nuget/packages/rabbitmq.client/6.2.1/rabbitmq.client.6.2.1.nupkg.sha512",
     "/home/marckrda/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -180,6 +181,7 @@
     "/home/marckrda/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/system.text.regularexpressions/4.3.0/system.text.regularexpressions.4.3.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
+    "/home/marckrda/.nuget/packages/system.threading.channels/4.7.1/system.threading.channels.4.7.1.nupkg.sha512",
     "/home/marckrda/.nuget/packages/system.threading.overlapped/4.3.0/system.threading.overlapped.4.3.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
