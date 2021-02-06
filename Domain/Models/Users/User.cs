@@ -18,17 +18,18 @@ namespace Domain.Models.Users
         
         public Profile Profile { get; private set; }
         public string Password { get; private set; }
+        public string PhoneNumber { get; private set; }
         public List<Product> WishListProducts {get; private set;} = new List<Product>();
         public List<AlarmPrice> WishProductsAlarmPrices {get; private set;} = new List<AlarmPrice>();
 
-        public User(string name, string email, string password, Profile profile)
+        public User(string name, string email, string password, Profile profile, string phoneNumber)
         {
             Id = Guid.NewGuid();
             Name = name;
             Email = email;
             Profile = profile;
             Password = password;
-            
+            PhoneNumber = phoneNumber;
         }
 
         public User(string name, string password, string email,string celphone)

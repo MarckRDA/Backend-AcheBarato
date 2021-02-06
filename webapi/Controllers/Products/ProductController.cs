@@ -20,7 +20,7 @@ namespace webapi.Controllers.Products
         [HttpGet]
         public IQueryable<Product> GetSearch([FromQuery] ProductQueryParameters parameters)
         {
-            return _productServices.GetAllProduct(parameters).OrderBy(x => x.Price);
+            return _productServices.GetAllProduct(parameters);
         }
 
         [HttpGet("trendproducts")]
