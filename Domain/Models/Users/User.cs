@@ -17,6 +17,7 @@ namespace Domain.Models.Users
         public Profile Profile { get; private set; }
         public string Password { get; private set; }
         public string PhoneNumber { get; private set; }
+        public List<string> SearchTags { get; private set; } = new List<string>();
         public List<Product> WishListProducts {get; private set;} = new List<Product>();
         public List<AlarmPrice> WishProductsAlarmPrices {get; private set;} = new List<AlarmPrice>();
 
@@ -54,6 +55,11 @@ namespace Domain.Models.Users
         public void AddAlarmPrice(AlarmPrice alarm)
         {
             WishProductsAlarmPrices.Add(alarm);
+        }
+
+        public void AddTagSearch(string searchTag)
+        {
+            SearchTags.Add(searchTag);
         }
 
         private bool ValidateName()

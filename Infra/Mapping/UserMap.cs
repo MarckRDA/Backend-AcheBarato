@@ -15,6 +15,7 @@ namespace Infra.Mapping
                 map.MapMember(x => x.Name).SetIsRequired(true);
                 map.MapMember(x => x.Email).SetIsRequired(true);
                 map.MapMember(x => x.PhoneNumber).SetIsRequired(true);
+                map.MapMember(x => x.SearchTags).SetIsRequired(true);
                 map.MapMember(x => x.Password).SetIsRequired(true);
                 map.MapMember(x => x.WishListProducts).SetIsRequired(true);
                 map.MapMember(x => x.WishProductsAlarmPrices).SetIsRequired(true);

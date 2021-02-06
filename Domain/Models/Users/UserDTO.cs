@@ -10,6 +10,7 @@ namespace Domain.Models.Users
         public Guid UserId { get; set; }
         public string Name { get; set; }
         public List<Product> WishListProducts {get; set;} 
+        public List<string> SearchTag { get; set; }
         public List<AlarmPrice> WishProductsAlarmPrices {get; set;}
     }    
 }
