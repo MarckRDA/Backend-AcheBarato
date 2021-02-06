@@ -1,4 +1,4 @@
-using System;
+using Domain.Models.Users;
 using Xunit;
 
 namespace Tests
@@ -6,9 +6,11 @@ namespace Tests
     public class UsersTests
     {
         [Fact]
-        public void Test1()
+        public void Should_Create_An_User()
         {
-            // var test = new Decrypt();
+            var test = new User("Marcos Alves", "marcos@gmail.com", "12345", Profile.Client, "+5592897128341");
+            
+            Assert.NotNull(test);
         }
     }
 }
