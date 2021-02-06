@@ -41,16 +41,17 @@ namespace webapi.Controllers.Users
             }
 
             var token = TokenServices.GerarToken(getedUSer);
-            
+
             var userDTO = new UserDTO()
             {
                 UserId = getedUSer.Id,
                 Name = getedUSer.Name,
+                SearchTag = getedUSer.SearchTags,
                 WishListProducts = getedUSer.WishListProducts,
             };
 
             return new
-            { 
+            {
                 token = token.ToString(),
                 user = userDTO
             };
@@ -66,12 +67,31 @@ namespace webapi.Controllers.Users
                 return Unauthorized();
             }
 
-            if (!userservices. UpdateAlarmPriceProductInformations(Guid.Parse(userId), request.ProductId, request.PriceToMonitor))
+            if (!userservices.UpdateAlarmPriceProductInformations(Guid.Parse(userId), request.ProductId, request.PriceToMonitor))
             {
                 return Unauthorized();
             }
-            
+
             return NoContent();
+        }
+
+        [HttpPost("addPreferences")]
+        public IActionResult PostUserPreferences(UserPreferencesRequest request)
+        {
+            StringValues userId;
+
+            if (!Request.Headers.TryGetValue("userid", out userId))
+            {
+                return Unauthorized();
+            }
+
+            if (!userservices.AddSearchTagInUserPreferences(Guid.Parse(userId), request.SearchTag))
+            {
+                return Unauthorized();
+            }
+
+            return NoContent();
+
         }
 
         [HttpPost]
@@ -80,7 +100,7 @@ namespace webapi.Controllers.Users
             var md5 = new Crypt();
             //recebe o password encriptografado
             var cryptoPassword = md5.RetornarMD5(request.Password);
-            
+
             var userAdded = userservices.CreateUser(request.Name, cryptoPassword, request.Email, Profile.Client, request.PhoneNumber);
 
             if (userAdded == null)

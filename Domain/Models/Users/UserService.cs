@@ -55,6 +55,15 @@ namespace Domain.Models.Users
             return _repository.GetUserByEmail(userEmail);
         }
 
+        public bool AddSearchTagInUserPreferences(Guid userId, string searchTag)
+        {
+            var userToAddPreferences = GetUser(userId);
+            if (userToAddPreferences == null) return false;
+            userToAddPreferences.AddTagSearch(searchTag);
+            _repository.UpdateUserInformations(userToAddPreferences);
+            return true;
+        }
+
         public bool UpdateAlarmPriceProductInformations(Guid userId, Guid productId, double priceToMonitor)
         {
             var userToUpdateAlarmPrice = GetUser(userId);
