@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/rodrigo/Desktop/temps/Backend-AcheBarato/webapi/webapi.csproj": {}
+    "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj": {}
   },
   "projects": {
-    "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj": {
+    "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj",
+        "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj",
+        "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj",
         "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/obj/",
+        "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/rodrigo/.nuget/NuGet/NuGet.Config"
@@ -70,14 +70,14 @@
         }
       }
     },
-    "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Infra/Infra.csproj": {
+    "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Infra/Infra.csproj",
+        "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj",
         "projectName": "Infra",
-        "projectPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Infra/Infra.csproj",
+        "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj",
         "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Infra/obj/",
+        "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/rodrigo/.nuget/NuGet/NuGet.Config"
@@ -91,8 +91,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj": {
-                "projectPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj"
+              "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
+                "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj"
               }
             }
           }
@@ -134,14 +134,14 @@
         }
       }
     },
-    "/home/rodrigo/Desktop/temps/Backend-AcheBarato/webapi/webapi.csproj": {
+    "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/webapi/webapi.csproj",
+        "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/webapi/webapi.csproj",
+        "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj",
         "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/webapi/obj/",
+        "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/rodrigo/.nuget/NuGet/NuGet.Config"
@@ -155,11 +155,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj": {
-                "projectPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Domain/Domain.csproj"
+              "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
+                "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj"
               },
-              "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Infra/Infra.csproj": {
-                "projectPath": "/home/rodrigo/Desktop/temps/Backend-AcheBarato/Infra/Infra.csproj"
+              "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj": {
+                "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj"
               }
             }
           }
@@ -188,6 +188,10 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.2.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
             }
           },
           "imports": [
