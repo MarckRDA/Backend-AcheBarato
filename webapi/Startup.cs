@@ -16,6 +16,9 @@ using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 using webapi.Services.BackgroundService;
 using webapi.Services.MessagerBrokers;
+using System;
+using System.Reflection;
+using System.IO;
 
 namespace webapi {
     public class Startup {
