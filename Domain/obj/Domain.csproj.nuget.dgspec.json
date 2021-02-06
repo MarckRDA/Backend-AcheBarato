@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {}
+    "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {}
   },
   "projects": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
+    "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
+        "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
-        "packagesPath": "/home/marckrda/.nuget/packages/",
-        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/obj/",
+        "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj",
+        "packagesPath": "/home/rodrigo/.nuget/packages/",
+        "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/marckrda/.nuget/NuGet/NuGet.Config"
+          "/home/rodrigo/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -24,7 +24,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -36,7 +35,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -68,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.405/RuntimeIdentifierGraph.json"
         }
       }
     }
