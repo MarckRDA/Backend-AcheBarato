@@ -53,7 +53,7 @@ namespace Infra.Repository
         public List<Product> GetRelatedProducts(Guid idProduct)
         {
             var productToBasedOnItsCategory = GetEntityById(pd => pd.id_product, idProduct);
-            return GetProductsByCategories(productToBasedOnItsCategory.Cathegory.Name).Take(10).ToList();
+            return GetProductsByCategories(productToBasedOnItsCategory.Cathegory.IdMLB).Take(10).ToList();
         }
 
         public (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters parameters)
