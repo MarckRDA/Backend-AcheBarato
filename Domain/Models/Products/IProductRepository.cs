@@ -11,6 +11,7 @@ namespace Domain.Models.Products
         (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters search);
 
         List<Product> GetRelatedProducts(Guid idProduct);
+        IEnumerable<Product> GetProductsByUserPreferences(string searchTag);
 
         IEnumerable<Product> GetTrendProducts();
         void AddManyProductsAtOnce(List<Product> products);

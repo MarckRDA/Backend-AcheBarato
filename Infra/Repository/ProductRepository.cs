@@ -40,6 +40,11 @@ namespace Infra.Repository
             return _repository.GetAllElements();
         }
 
+        public IEnumerable<Product> GetProductsByUserPreferences(string searchTag)
+        {
+            return _collection.Find(x => x.Name.Contains(searchTag)).ToEnumerable().Take(10);
+        }
+
         public IEnumerable<Product> GetTrendProducts()
         {
             return _collection.Find(x => x.isTrending == true).ToList();

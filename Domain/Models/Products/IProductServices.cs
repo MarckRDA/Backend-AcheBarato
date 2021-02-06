@@ -13,7 +13,7 @@ namespace Domain.Models.Products
         IEnumerable<ProductDTO> GetTrendProductsDTO();
         List<ProductDTO> GetRelatedProductsDTO(Guid idProduct);
         List<Cathegory> GetCathegories();       
-
+        List<Product> GetProdutsBasedOnUserSearches(string searchTag);
         List<Product>   GetProductsByCategory(string category);
 
     }

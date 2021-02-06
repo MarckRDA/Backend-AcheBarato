@@ -23,6 +23,12 @@ namespace webapi.Controllers.Products
             return _productServices.GetAllProduct(parameters);
         }
 
+        [HttpGet("usersPreferences/{search}")]
+        public IActionResult GetProductsByUserPreferences(string search)
+        {
+            return Ok(_productServices.GetProdutsBasedOnUserSearches(search));
+        }
+
         [HttpGet("trendproducts")]
         public IActionResult GetTrendProducts()
         {

@@ -41,6 +41,11 @@ namespace Domain.Models.Products
 
         }
 
+        public List<Product> GetProdutsBasedOnUserSearches(string searchTag)
+        {
+            return _repository.GetProductsByUserPreferences(searchTag).ToList();
+        } 
+
         public List<Product> GetProductsByCategory(string category)
         {
             return _repository.GetProductsByCategories(category);
