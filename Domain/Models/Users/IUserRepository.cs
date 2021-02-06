@@ -6,6 +6,8 @@ namespace Domain.Models.Users
     {
         void UpdateUserInformations(User userToUpdate);
         User GetUserByEmail(string userEmail);
+        bool ExistAnyUserWithThisEmail(string email);
+
     }
 
 }

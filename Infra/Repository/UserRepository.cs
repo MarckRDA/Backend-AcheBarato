@@ -46,5 +46,10 @@ namespace Infra.Repository
 
         }
 
+        public bool ExistAnyUserWithThisEmail(string email)
+        {
+            return GetUserByEmail(email) != null;
+        }
+
     }
 }
