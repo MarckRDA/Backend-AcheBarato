@@ -47,7 +47,33 @@ namespace Infra.Repository
 
         public IEnumerable<Product> GetTrendProducts()
         {
-            return _collection.Find(x => x.isTrending == true).ToList();
+            var filter = Builders<Product>.Filter;
+            List<Product> trendProducts = new List<Product>();
+
+            var filterTrendConsoles = filter.Eq(x => x.Cathegory.Name, "Consoles");
+            var filterTrendGeladeiras = filter.Eq(x => x.Cathegory.Name, "Geladeiras");
+            var filterTrendCelulares = filter.Eq(x => x.Cathegory.Name, "Celulares e Smartphones");
+            var filterTrendArCondicionado = filter.Eq(x => x.Cathegory.Name, "Ar Condicionado");
+            
+            foreach (var product in _collection.Find(filterTrendConsoles).ToList().TakeLast(10))
+            {
+                trendProducts.Add(product);
+            }
+            foreach (var product in _collection.Find(filterTrendGeladeiras).ToList().TakeLast(10))
+            {
+                trendProducts.Add(product);
+            }
+            foreach (var product in _collection.Find(filterTrendCelulares).ToList().TakeLast(10))
+            {
+                trendProducts.Add(product);
+            }
+            
+            foreach (var product in _collection.Find(filterTrendArCondicionado).ToList().TakeLast(10))
+            {
+                trendProducts.Add(product);
+            }
+
+            return trendProducts;
         }
 
         public List<Cathegory> GetCathegories()
