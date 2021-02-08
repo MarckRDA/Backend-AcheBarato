@@ -109,7 +109,7 @@ namespace Domain.Models.Products
         {
             var productsToProductsDTO = _repository.GetTrendProducts();
             var trendsProductsDTO = new List<ProductDTO>();
-
+            
             foreach (var product in productsToProductsDTO)
             {
                 trendsProductsDTO.Add(new ProductDTO()
