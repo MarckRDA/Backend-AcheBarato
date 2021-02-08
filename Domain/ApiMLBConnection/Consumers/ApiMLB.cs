@@ -55,7 +55,7 @@ namespace Domain.ApiMLBConnection.Consumers
 
                 HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
 
-                var keywordProductForSearch = JArray.Parse(response.Content.ReadAsStringAsync().Result)[1]["keyword"];
+                var keywordProductForSearch = JArray.Parse(response.Content.ReadAsStringAsync().Result)[0]["keyword"];
 
                 products.Add(GetProducts(keywordProductForSearch.ToString()).Take(10).ToList());
             }
