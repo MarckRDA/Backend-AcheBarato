@@ -115,7 +115,6 @@ namespace webapi {
         private void InitProcess () {
 
             BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.PushProductsInDB ());
-            BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.PushTrendProductsInDB ());
             BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.NotifyUserAboutAlarmPrice ());
             BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.MonitorPriceProducts ());
         }
