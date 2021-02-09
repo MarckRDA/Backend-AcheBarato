@@ -8,13 +8,12 @@ namespace Domain.Models.Products
 {
     public interface IProductServices
     {
-        IQueryable<Product> GetAllProduct(ProductQueryParameters parameters);
+        IQueryable<ProductDTO> GetAllProduct(ProductQueryParameters parameters);
         ProductDTO GetProductDTOById(Guid idProduct);
         IEnumerable<ProductDTO> GetTrendProductsDTO();
         List<ProductDTO> GetRelatedProductsDTO(Guid idProduct);
         List<Cathegory> GetCathegories();       
         List<Product> GetProdutsBasedOnUserSearches(string searchTag);
-        List<Product>   GetProductsByCategory(string category);
 
     }
 }

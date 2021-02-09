@@ -32,7 +32,7 @@ namespace Infra.Repository
 
         public void AddManyProductsAtOnce(List<Product> products)
         {
-            _collection.InsertManyAsync(products);
+            _collection.InsertMany(products);
         }
 
         public IEnumerable<Product> GetAllElements()
@@ -115,12 +115,12 @@ namespace Infra.Repository
                 
             }
 
-            return (p, p.Count() > 5);
+            return (p.Take(10), p.Count() > 1);
         }
 
-        public List<Product> GetProductsByCategories(string category)
+        public List<Product> GetProductsByCategories(string categoryId)
         {
-            return _collection.AsQueryable().Where(x => x.Cathegory.IdMLB == category).ToList();
+            return _collection.AsQueryable().Where(x => x.Cathegory.IdMLB == categoryId).ToList();
         }
 
         public List<Description> GetProductDescription(Guid idProduct)
@@ -133,6 +133,11 @@ namespace Infra.Repository
         public Product GetEntityById(Expression<Func<Product, Guid>> function, Guid value)
         {
             return _repository.GetEntityById(function, value);
+        }
+
+        public Product GetProductByMLBId(string MLBId)
+        {
+            return _collection.Find(x => x.MLBId == MLBId).FirstOrDefault();
         }
 
     }

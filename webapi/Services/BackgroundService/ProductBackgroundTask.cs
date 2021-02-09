@@ -32,11 +32,21 @@ namespace webapi.Services.BackgroundService
         {
             try
             {
-                var productsToPush = ApiMLB.PutProductsInBackGround();
+                var listProductsToPush = ApiMLB.PutProductsInBackGround();
 
-                foreach (var product in productsToPush)
+                var filter = Builders<Product>.Filter;
+
+                foreach (var productList in listProductsToPush)
                 {
-                    _collectionProducts.InsertManyAsync(product);
+                    foreach (var productPushedFromApi in productList)
+                    {
+                        if (_collectionProducts.Find(filter.Eq(x => x.MLBId, productPushedFromApi.MLBId)).FirstOrDefault() != null)
+                        {
+                            productList.Remove(productPushedFromApi);
+                            continue;
+                        }
+                    }
+                    _collectionProducts.InsertManyAsync(productList);
                 }
             }
             catch (System.Exception e)
@@ -90,10 +100,11 @@ namespace webapi.Services.BackgroundService
                     var price = ApiMLB.FindWhetherProductPriceChanges(product.MLBId);
                     product.UpdateProductPrice(price);
                     product.AddHistoricalPrice(new HistorycalPrice(price, DateTime.Now.ToShortDateString()));
-                    _collectionProducts.ReplaceOneAsync(
+                    _collectionProducts.ReplaceOne(
                     p => p.id_product == product.id_product,
                     product
                 );
+
                 }
                 catch (System.Exception ex)
                 {
@@ -120,13 +131,13 @@ namespace webapi.Services.BackgroundService
                     var productInMonitoring = _collectionProducts.Find(filterProduct).FirstOrDefault();
                     if (productInMonitoring == null) continue;
                     if (alarm.IsTheSamePrice(productInMonitoring.Price))
-                    { 
-                        var linkRedirect =  $"https://localhost:3000/ProdutoEscolhido/{productInMonitoring.id_product}";
+                    {
+                        var linkRedirect = $"https://localhost:3000/ProdutoEscolhido/{productInMonitoring.id_product}";
 
                         _messagerBroker.SendEntityToNotify(new SenderEntity(
                                                             user.Name,
                                                             user.Email,
-                                                            "999999999999",
+                                                            user.PhoneNumber,
                                                             productInMonitoring.Name,
                                                             productInMonitoring.Price,
                                                             productInMonitoring.ThumbImgLink,

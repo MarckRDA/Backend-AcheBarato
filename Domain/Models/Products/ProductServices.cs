@@ -16,16 +16,23 @@ namespace Domain.Models.Products
         }
 
 
-        public IQueryable<Product> GetAllProduct(ProductQueryParameters parameters)
+        public IQueryable<ProductDTO> GetAllProduct(ProductQueryParameters parameters)
         {
             if (parameters.Search.StartsWith("MLB"))
             {
-                return GetProductsByCategory(parameters.Search).AsQueryable();
+                return GetProductsByCategory(parameters.Search).Select(product => new ProductDTO()
+                {
+                    Name = product.Name,
+                    ThumbImgLink = product.ThumbImgLink,
+                    Price = product.Price,
+                    id_product = product.id_product
+
+                }).AsQueryable();
             }
 
             if(!parameters.ValidateValuePrice())
             {
-                throw new Exception("The ");
+                throw new ArgumentException("The MaxPrice value has to be greater than MiPrice value");
             }
             var productInDB = _repository.GetFilterProductsByName(parameters);
 
@@ -34,19 +41,31 @@ namespace Domain.Models.Products
                 PostProductInDB(parameters.Search);
                 var p = _repository.GetFilterProductsByName(parameters).products;
                 
-                return p;
+                return p.Select(product => new ProductDTO()
+                {
+                    Name = product.Name,
+                    ThumbImgLink = product.ThumbImgLink,
+                    Price = product.Price,
+                    id_product = product.id_product
+
+                });
             }
 
-            return productInDB.products;
+            return productInDB.products.Select(product => new ProductDTO()
+                {
+                    Name = product.Name,
+                    ThumbImgLink = product.ThumbImgLink,
+                    Price = product.Price,
+                    id_product = product.id_product
 
+                });
         }
-
         public List<Product> GetProdutsBasedOnUserSearches(string searchTag)
         {
             return _repository.GetProductsByUserPreferences(searchTag).ToList();
         } 
 
-        public List<Product> GetProductsByCategory(string category)
+        private List<Product> GetProductsByCategory(string category)
         {
             return _repository.GetProductsByCategories(category);
         }
@@ -58,16 +77,9 @@ namespace Domain.Models.Products
                 {
                     Name = relatedproduct.Name,
                     id_product = relatedproduct.id_product,
-                    isTrending = relatedproduct.isTrending,
-                    MLBId = relatedproduct.MLBId,
-                    Tag = relatedproduct.Tag,
-                    Descriptions = relatedproduct.Descriptions,
                     ThumbImgLink = relatedproduct.ThumbImgLink,
-                    Pictures = relatedproduct.Pictures,
                     LinkRedirectShop = relatedproduct.LinkRedirectShop,
-                    HistorycalṔrices = relatedproduct.HistorycalṔrices,
                     Price = relatedproduct.Price,
-                    Cathegory = relatedproduct.Cathegory
                 })
                 .ToList();
         }
@@ -86,22 +98,26 @@ namespace Domain.Models.Products
             {
                 Name = gotProductFromDB.Name,
                 id_product = gotProductFromDB.id_product,
-                isTrending = gotProductFromDB.isTrending,
-                MLBId = gotProductFromDB.MLBId,
-                Tag = gotProductFromDB.Tag,
                 Descriptions = gotProductFromDB.Descriptions,
                 ThumbImgLink = gotProductFromDB.ThumbImgLink,
                 Pictures = gotProductFromDB.Pictures,
                 LinkRedirectShop = gotProductFromDB.LinkRedirectShop,
                 HistorycalṔrices = gotProductFromDB.HistorycalṔrices,
                 Price = gotProductFromDB.Price,
-                Cathegory = gotProductFromDB.Cathegory
             };
         }
 
         private void PostProductInDB(string search)
         {
             var products = ApiMLB.GetProducts(search);
+            foreach (var product in products)
+            {
+                if (_repository.GetProductByMLBId(product.MLBId) != null)
+                {
+                    products.Remove(product);
+                    continue;
+                }
+            }
             _repository.AddManyProductsAtOnce(products);
         }
 
@@ -117,14 +133,7 @@ namespace Domain.Models.Products
                     Name = product.Name,
                     id_product = product.id_product,
                     Cathegory = product.Cathegory,
-                    Descriptions = product.Descriptions,
-                    HistorycalṔrices = product.HistorycalṔrices,
-                    isTrending = product.isTrending,
-                    LinkRedirectShop = product.LinkRedirectShop,
-                    MLBId = product.MLBId,
-                    Pictures = product.Pictures,
                     Price = product.Price,
-                    Tag = product.Tag,
                     ThumbImgLink = product.ThumbImgLink
                 });
             }

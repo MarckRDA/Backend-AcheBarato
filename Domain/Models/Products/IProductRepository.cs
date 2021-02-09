@@ -9,7 +9,7 @@ namespace Domain.Models.Products
     public interface IProductRepository : IMongoRepository<Product>
     {
         (IQueryable<Product> products, bool isThereAnyProductsInBD) GetFilterProductsByName(ProductQueryParameters search);
-
+        Product GetProductByMLBId(string MLBId);
         List<Product> GetRelatedProducts(Guid idProduct);
         IEnumerable<Product> GetProductsByUserPreferences(string searchTag);
 
