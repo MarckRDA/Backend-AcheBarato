@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj": {}
+    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj": {}
   },
   "projects": {
-    "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
+    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj",
+        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj",
-        "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/obj/",
+        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
+        "packagesPath": "/home/marckrda/.nuget/packages/",
+        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/rodrigo/.nuget/NuGet/NuGet.Config"
+          "/home/marckrda/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -24,6 +24,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -35,6 +36,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -66,21 +68,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.405/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj": {
+    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj",
+        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj",
         "projectName": "Infra",
-        "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj",
-        "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/obj/",
+        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj",
+        "packagesPath": "/home/marckrda/.nuget/packages/",
+        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/rodrigo/.nuget/NuGet/NuGet.Config"
+          "/home/marckrda/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -90,9 +92,10 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
-                "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj"
+              "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
+                "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj"
               }
             }
           }
@@ -105,6 +108,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MongoDB.Driver": {
               "target": "Package",
@@ -130,21 +134,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.405/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj": {
+    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj",
+        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj",
-        "packagesPath": "/home/rodrigo/.nuget/packages/",
-        "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/obj/",
+        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
+        "packagesPath": "/home/marckrda/.nuget/packages/",
+        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/rodrigo/.nuget/NuGet/NuGet.Config"
+          "/home/marckrda/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -154,12 +158,13 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
-                "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj"
+              "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
+                "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj"
               },
-              "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj": {
-                "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj"
+              "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj": {
+                "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj"
               }
             }
           }
@@ -172,6 +177,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Cronos": {
               "target": "Package",
@@ -184,6 +190,26 @@
             "HangFire.Mongo": {
               "target": "Package",
               "version": "[0.7.17, )"
+            },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.AspNetCore.ResponseCompression": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             },
             "RabbitMQ.Client": {
               "target": "Package",
@@ -212,7 +238,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.405/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }
