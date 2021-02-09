@@ -153,21 +153,21 @@ namespace Domain.ApiMLBConnection.Consumers
 
                         foreach (var description in listDescriptions)
                         {
-                            if (description["name"].ToString() == "Marca")
-                            {
-                                createTag += " " + description["value_name"].ToString().ToUpper();
-                            }
-
+                            createTag += " " + description["value_name"].ToString().ToUpper();
                             listDescriptionsObject.Add(new Description(description["name"].ToString(),
                                                                      description["value_name"].ToString()));
                         }
 
+                        var categoryName = GetCathegoriesChildrendById(cathegoryMLB);
+                        
+                        createTag += " " + categoryName;
+                        
                         var getProductFromAPIToDB = new Product(titleProduct,
                                                                 idMLBProduct,
                                                                 double.Parse(priceProduct),
                                                                 thumbnailPic,
                                                                 redirLink,
-                                                                new Cathegory(cathegoryMLB, GetCathegoriesChildrendById(cathegoryMLB)),
+                                                                new Cathegory(cathegoryMLB, categoryName),
                                                                 createTag.Split(' '));
 
 
