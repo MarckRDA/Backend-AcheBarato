@@ -33,6 +33,7 @@ namespace webapi.Services.MessagerBrokers
                 channel.ExchangeDeclare(exchange: exchange, type: ExchangeType.Fanout);
 
                 string message = JsonSerializer.Serialize<SenderEntity>(sendObject);
+                Console.WriteLine($"Estou aqui: {message}");
                 var body = Encoding.UTF8.GetBytes(message);
 
                 channel.BasicPublish(exchange: exchange,
