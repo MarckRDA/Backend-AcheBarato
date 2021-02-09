@@ -18,15 +18,15 @@ namespace webapi.Controllers.Products
         }
 
         [HttpGet]
-        public IQueryable<Product> GetSearch([FromQuery] ProductQueryParameters parameters)
+        public IQueryable<ProductDTO> GetSearch([FromQuery] ProductQueryParameters parameters)
         {
             return _productServices.GetAllProduct(parameters);
         }
 
-        [HttpGet("usersPreferences/{search}")]
-        public IActionResult GetProductsByUserPreferences(string search)
+        [HttpGet("{idProduct}")]
+        public IActionResult GetProducyById(Guid idProduct)
         {
-            return Ok(_productServices.GetProdutsBasedOnUserSearches(search));
+            return Ok(_productServices.GetProductDTOById(idProduct));
         }
 
         [HttpGet("trendproducts")]
@@ -35,10 +35,10 @@ namespace webapi.Controllers.Products
             return Ok(_productServices.GetTrendProductsDTO());
         }
 
-        [HttpGet("{idProduct}")]
-        public IActionResult GetProducyById(Guid idProduct)
+        [HttpGet("usersPreferences/{search}")]
+        public IActionResult GetProductsByUserPreferences(string search)
         {
-            return Ok(_productServices.GetProductDTOById(idProduct));
+            return Ok(_productServices.GetProdutsBasedOnUserSearches(search));
         }
 
         [HttpGet("categories")]
@@ -58,13 +58,6 @@ namespace webapi.Controllers.Products
         {
             return Ok(_productServices.GetProductDTOById(idProduct).Descriptions);
         }
-
-        [HttpGet("categories/{category}")]
-        public IActionResult GetCathegories(string category)
-        {
-            return Ok(_productServices.GetProductsByCategory(category));
-        }
-
 
     }
 }
