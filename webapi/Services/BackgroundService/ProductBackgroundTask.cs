@@ -46,6 +46,11 @@ namespace webapi.Services.BackgroundService
                             continue;
                         }
                     }
+
+                    if (productList.Count == 0)
+                    {
+                        return;
+                    }
                     _collectionProducts.InsertManyAsync(productList);
                 }
             }
