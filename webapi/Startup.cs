@@ -11,6 +11,7 @@ using Infra.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ using MongoDB.Driver;
 using webapi.Crypts;
 using webapi.Services.BackgroundService;
 using webapi.Services.MessagerBrokers;
+using webapi.Services.URIBuilder;
 
 namespace webapi
 {
@@ -59,6 +61,7 @@ namespace webapi
             services.AddScoped<IMessagerBroker, MessagerBroker>();
             services.AddScoped<IProductBackgroundTask, ProductBackgroundTask>();
 
+
             var mongoUrlBuilder = new MongoUrlBuilder(Configuration.GetValue<string>("MongoSettings:Connection"));
             var mongoClient = new MongoClient(mongoUrlBuilder.ToMongoUrl());
 
@@ -77,10 +80,12 @@ namespace webapi
                    CheckConnection = true
                }));
 
+
             services.AddHangfireServer(serverOptions =>
             {
                 serverOptions.ServerName = "Hangfire.Mongo server 1";
             });
+
 
             services.AddAuthentication(x =>
             {
@@ -100,16 +105,27 @@ namespace webapi
                 };
             });
 
+
             services.AddMvc().AddJsonOptions(option =>
             {
                 option.JsonSerializerOptions.IgnoreNullValues = true;
             });
+
 
             services.AddResponseCompression(options =>
            {
                options.Providers.Add<BrotliCompressionProvider>();
                options.EnableForHttps = true;
            });
+
+            services.AddHttpContextAccessor();
+            services.AddSingleton<IURIService>(o =>
+            {
+                var accessor = o.GetRequiredService<IHttpContextAccessor>();
+                var request = accessor.HttpContext.Request;
+                var uri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent());
+                return new URIService(uri);
+            });
 
 
             services.AddControllers();
@@ -166,9 +182,9 @@ namespace webapi
         private void InitProcess()
         {
 
-            // BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.PushProductsInDB ());
-            // RecurringJob.AddOrUpdate<ProductBackgroundTask> (x => x.NotifyUserAboutAlarmPrice (), Cron.MinuteInterval(5));
-            // BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.MonitorPriceProducts ());
+            BackgroundJob.Enqueue<ProductBackgroundTask>(x => x.PushProductsInDB());
+            //RecurringJob.AddOrUpdate<ProductBackgroundTask> (x => x.NotifyUserAboutAlarmPrice (), Cron.MinuteInterval(5));
+            //BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.MonitorPriceProducts ());
         }
 
     }
