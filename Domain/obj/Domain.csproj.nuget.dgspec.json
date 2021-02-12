@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {}
+    "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
+    "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
+        "projectUniqueName": "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
-        "packagesPath": "/home/marckrda/.nuget/packages/",
-        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/obj/",
+        "projectPath": "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\entra21\\.nuget\\packages\\",
+        "outputPath": "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/marckrda/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\entra21\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -68,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
