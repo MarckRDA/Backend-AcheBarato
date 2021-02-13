@@ -20,6 +20,15 @@
           "lib/netstandard2.1/DnsClient.dll": {}
         }
       },
+      "FluentValidation/9.5.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        }
+      },
       "Hangfire/1.7.18": {
         "type": "package",
         "dependencies": {
@@ -3291,6 +3300,24 @@
         "lib/netstandard2.0/DnsClient.xml",
         "lib/netstandard2.1/DnsClient.dll",
         "lib/netstandard2.1/DnsClient.xml"
+      ]
+    },
+    "FluentValidation/9.5.1": {
+      "sha512": "By09e2m4N3giD7Giq8NCFgkgN5Hkm8Lv/bk8AadD9Xc6jjj2WDGrD6l9keZbWbkO9aygiHQREIt47iS2sVSU7w==",
+      "type": "package",
+      "path": "fluentvalidation/9.5.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fluent-validation-icon.png",
+        "fluentvalidation.9.5.1.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net461/FluentValidation.dll",
+        "lib/net461/FluentValidation.xml",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml"
       ]
     },
     "Hangfire/1.7.18": {
@@ -10208,6 +10235,7 @@
     ".NETCoreApp,Version=v3.1": [
       "Cronos >= 0.7.0",
       "Domain >= 1.0.0",
+      "FluentValidation >= 9.5.1",
       "HangFire >= 1.7.18",
       "HangFire.Mongo >= 0.7.17",
       "Infra >= 1.0.0",
@@ -10221,19 +10249,19 @@
     ]
   },
   "packageFolders": {
-    "/home/marckrda/.nuget/packages/": {}
+    "/home/rodrigo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
+      "projectUniqueName": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
-      "packagesPath": "/home/marckrda/.nuget/packages/",
-      "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/obj/",
+      "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/webapi.csproj",
+      "packagesPath": "/home/rodrigo/.nuget/packages/",
+      "outputPath": "/home/rodrigo/Desktop/Backend-AcheBarato/webapi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/marckrda/.nuget/NuGet/NuGet.Config"
+        "/home/rodrigo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -10243,13 +10271,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
-              "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj"
+            "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj": {
+              "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Domain/Domain.csproj"
             },
-            "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj": {
-              "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj"
+            "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj": {
+              "projectPath": "/home/rodrigo/Desktop/Backend-AcheBarato/Infra/Infra.csproj"
             }
           }
         }
@@ -10262,11 +10289,14 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Cronos": {
             "target": "Package",
             "version": "[0.7.0, )"
+          },
+          "FluentValidation": {
+            "target": "Package",
+            "version": "[9.5.1, )"
           },
           "HangFire": {
             "target": "Package",
@@ -10323,7 +10353,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.405/RuntimeIdentifierGraph.json"
       }
     }
   }

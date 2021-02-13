@@ -30,7 +30,7 @@ namespace Tests.Users
         public void AddUser_is_invalid()
         {
             //Given
-            var validation = userService.CreateUser("Rodrigo alecrim dourado", "Rodrigo.boy@gmail.com", "senha", Profile.Adm, "47991320566");
+            var validation = userService.CreateUser("Vinicius Dildo", "Vinicius.dildo@gmail.com", "senha", Profile.Adm, "47991320566");
 
             //When
             _usersRepository.Verify(x => x.add(It.IsAny<User>()), Times.Never());
