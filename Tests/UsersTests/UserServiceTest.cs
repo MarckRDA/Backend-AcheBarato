@@ -53,20 +53,16 @@ namespace Tests.Users
         }
 
         [Fact]
-        public void TestName()
+        public void GetUserById_valid() // n tá funfando
         {
             //Given
             var user = userService.CreateUser("Matheus Tallmann", "senha", "matheus.delas7787@gmail.com", Profile.Adm, "47991320566");
-            var mock = new Mock<IUserService>();
 
             //When
-            _usersRepository.Setup(x => x.GetEntityById(x => x.Id, user.Id)).Returns(user);
-            var returnedUser = userService.GetUserById(user.Id);
-            mock.Setup(x => x.GetUserById(user.Id)).Returns(user);
-            // mock.Object
+            userService.GetUserById(user.Id);
+            _usersRepository.Verify(x => x.GetEntityById(x => x.Id, user.Id), Times.Once());
             
             //Then
-            Assert.Equal(user, returnedUser);
         }
     }
 }
