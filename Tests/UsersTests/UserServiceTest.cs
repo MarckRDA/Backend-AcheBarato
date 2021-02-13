@@ -56,7 +56,7 @@ namespace Tests.Users
         public void GetUserById_valid() // n tá funfando
         {
             //Given
-            var user = userService.CreateUser("Matheus Tallmann", "senha", "matheus.delas7787@gmail.com", Profile.Adm, "47991320566");
+            var user = userService.CreateUser("Matheus Tallmann", "senha", "matheus.deles7787@gmail.com", Profile.Adm, "47991320566");
 
             //When
             userService.GetUserById(user.Id);
