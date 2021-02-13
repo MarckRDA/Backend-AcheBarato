@@ -55,13 +55,18 @@ namespace Tests.Users
         [Fact]
         public void TestName()
         {
-        //Given
-        var user = userService.CreateUser("Matheus Tallmann", "senha", "matheus.delas7787@gmail.com", Profile.Adm, "47991320566");
+            //Given
+            var user = userService.CreateUser("Matheus Tallmann", "senha", "matheus.delas7787@gmail.com", Profile.Adm, "47991320566");
+            var mock = new Mock<IUserService>();
 
-        //When
-        var userId = userService.GetUserById(user.Id);
-        
-        //Then
+            //When
+            _usersRepository.Setup(x => x.GetEntityById(x => x.Id, user.Id)).Returns(user);
+            var returnedUser = userService.GetUserById(user.Id);
+            mock.Setup(x => x.GetUserById(user.Id)).Returns(user);
+            // mock.Object
+            
+            //Then
+            Assert.Equal(user, returnedUser);
         }
     }
 }
