@@ -135,8 +135,8 @@ namespace Infra.Repository
                                     .AsQueryable();
             }
 
-            return (productsSearched.Skip((parameters.PageNumber - 1) * parameters.PageSize)
-                    .Take(parameters.PageSize), 
+            return (productsSearched.Skip((parameters.PageNumber - 1) * parameters.Limit)
+                    .Take(parameters.Limit), 
                     productsSearched.Count() > 10, 
                     productsSearched.Count());
         }
@@ -144,8 +144,8 @@ namespace Infra.Repository
         public List<Product> GetProductsByCategories(QueryParameters parameters)
         {
             return _collection.AsQueryable().Where(x => x.Cathegory.IdMLB == parameters.Search)
-                .Skip((parameters.PageNumber - 1) * parameters.PageSize)
-                .Take(parameters.PageSize)
+                .Skip((parameters.PageNumber - 1) * parameters.Limit)
+                .Take(parameters.Limit)
                 .ToList();
         }
         public List<Product> GetProductsByCategories(string IdMLB)

@@ -157,6 +157,7 @@ namespace webapi
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("achebarato");
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

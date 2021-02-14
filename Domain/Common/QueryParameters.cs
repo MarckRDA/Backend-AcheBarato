@@ -7,17 +7,17 @@ namespace Domain.Common
         public string Search { get; set; } = "";
         public int PageNumber { get; set; } = 1;
         public string OrderBy { get; set; } = "";
-        public int PageSize { get; set; } = 12;
+        public int Limit { get; set; } = 12;
 
         public QueryParameters()
         {
             
         }
 
-        public QueryParameters(int pageNumber, int pageSize)
+        public QueryParameters(int pageNumber, int limit)
         {
             PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            PageSize = pageSize > 12 ? 12 : pageSize;
+            Limit = limit;
         }
 
         public bool ValidateValuePrice() => MaxPrice > MinPrice;

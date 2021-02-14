@@ -30,8 +30,7 @@ namespace webapi.Controllers.Products
             var products = _productServices.GetAllProduct(parameters);
             
             var totalQuantity = products.quantityData;
-            Console.WriteLine(totalQuantity);
-            
+                
             return Ok(PaginationHelper.CreatePagedReponse<ProductDTO>(products.productsSeached.ToList(), parameters, totalQuantity, _uriSevice, route));
         }
 
