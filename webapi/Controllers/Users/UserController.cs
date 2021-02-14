@@ -21,7 +21,7 @@ namespace webapi.Controllers.Users
         [HttpGet("{idUser}")]
         public User GetUser(Guid idUser)
         {
-            return userservices.GetUser(idUser);
+            return userservices.GetUserById(idUser);
         }
 
         [HttpPost("login")]

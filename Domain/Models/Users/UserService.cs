@@ -12,19 +12,6 @@ namespace Domain.Models.Users
             _repository = repository;
         }
 
-        public (bool isValid, Guid id) AddUser(string name, string password, string email, Profile profile, string phoneNumber)
-        {
-            var newUSer = CreateUser(name, password, email, profile, phoneNumber);
-
-            if (newUSer == null)
-            {
-                return (false, Guid.Empty);
-            }
-
-            return (true, newUSer.Id);
-
-        }
-
         public User CreateUser(string name, string password, string email, Profile profile, string phoneNumber)
         {
             {
@@ -45,7 +32,7 @@ namespace Domain.Models.Users
 
         }
 
-        public User GetUser(Guid idUser)
+        public User GetUserById(Guid idUser)
         {
             return _repository.GetEntityById(x => x.Id, idUser);
         }
@@ -57,7 +44,7 @@ namespace Domain.Models.Users
 
         public bool AddSearchTagInUserPreferences(Guid userId, string searchTag)
         {
-            var userToAddPreferences = GetUser(userId);
+            var userToAddPreferences = GetUserById(userId);
             if (userToAddPreferences == null) return false;
             userToAddPreferences.AddTagSearch(searchTag);
             _repository.UpdateUserInformations(userToAddPreferences);
@@ -66,7 +53,7 @@ namespace Domain.Models.Users
 
         public bool UpdateAlarmPriceProductInformations(Guid userId, Guid productId, double priceToMonitor)
         {
-            var userToUpdateAlarmPrice = GetUser(userId);
+            var userToUpdateAlarmPrice = GetUserById(userId);
             if (userToUpdateAlarmPrice == null) return false;
             userToUpdateAlarmPrice.AddAlarmPrice(new AlarmPrice(productId, priceToMonitor));
             _repository.UpdateUserInformations(userToUpdateAlarmPrice);
