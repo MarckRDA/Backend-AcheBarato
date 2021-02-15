@@ -17,7 +17,7 @@ namespace Tests.Users
         [Fact]
         public void Create_User()
         {
-            var user = new User("Marcos Alves", "12345", "rodrigo.deles@gmail.com", "47984956815");
+            var user = new User("Marcos Alves", "12345", "marcos@gmail.com", "47984956815");
             var validation = user.Validate();
             
             Assert.NotNull(user);
