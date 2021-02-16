@@ -12,7 +12,5 @@ namespace Domain.Models.Cathegories
             IdMLB = idMLB;
             Name = name;
         }
-
-
     }
 }

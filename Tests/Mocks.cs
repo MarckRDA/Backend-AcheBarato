@@ -6,17 +6,17 @@ namespace Tests.Mocks
 {
     public abstract class MyMocks
     {
-        protected Mock<IUserRepository> UsersRepository;
-        protected Mock<IProductRepository> ProductRepository;
+        protected Mock<IUserRepository> UsersRepository = new Mock<IUserRepository>();
+        protected Mock<IProductRepository> ProductRepository = new Mock<IProductRepository>();
         protected UserService UserService;
+        protected Mock<ProductServices> MockProductServices;
         protected ProductServices ProductServices;
 
         public MyMocks()
         {
-            UsersRepository = new Mock<IUserRepository>();
-            ProductRepository = new Mock<IProductRepository>();
             UserService = new UserService(UsersRepository.Object);
+            MockProductServices = new Mock<ProductServices>(ProductRepository.Object);
             ProductServices = new ProductServices(ProductRepository.Object);
         }
-}
+    }
 }

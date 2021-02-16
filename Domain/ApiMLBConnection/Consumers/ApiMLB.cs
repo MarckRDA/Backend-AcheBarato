@@ -39,13 +39,11 @@ namespace Domain.ApiMLBConnection.Consumers
             JArray products = (JArray)GetMethodHandler(action)["results"];
 
             return GetBestSellers(products);
-
         }
 
         public static List<List<Product>> GetTrendsProducts()
         {
             var products = new List<List<Product>>();
-            
             foreach (var trend in TrendSearchesInML)
             {
 
@@ -61,7 +59,6 @@ namespace Domain.ApiMLBConnection.Consumers
             }
 
             return products;
-
         }
 
         public static List<Product> GetProductsByCathegory(string cathegoryId)
@@ -155,7 +152,7 @@ namespace Domain.ApiMLBConnection.Consumers
                         {
                             createTag += " " + description["value_name"].ToString().ToUpper();
                             listDescriptionsObject.Add(new Description(description["name"].ToString(),
-                                                                     description["value_name"].ToString()));
+                                description["value_name"].ToString()));
                         }
 
                         var categoryName = GetCathegoriesChildrendById(cathegoryMLB);
@@ -163,12 +160,12 @@ namespace Domain.ApiMLBConnection.Consumers
                         createTag += " " + categoryName;
                         
                         var getProductFromAPIToDB = new Product(titleProduct,
-                                                                idMLBProduct,
-                                                                double.Parse(priceProduct),
-                                                                thumbnailPic,
-                                                                redirLink,
-                                                                new Cathegory(cathegoryMLB, categoryName),
-                                                                createTag.Split(' '));
+                            idMLBProduct,
+                            double.Parse(priceProduct),
+                            thumbnailPic,
+                            redirLink,
+                            new Cathegory(cathegoryMLB, categoryName),
+                            createTag.Split(' '));
 
 
                         foreach (var description in listDescriptionsObject)
@@ -204,8 +201,6 @@ namespace Domain.ApiMLBConnection.Consumers
             HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
 
             return JObject.Parse(response.Content.ReadAsStringAsync().Result);
-
         }
-
     }
 }
