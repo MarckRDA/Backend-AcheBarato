@@ -10254,11 +10254,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\webapi.csproj",
+      "projectUniqueName": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\webapi.csproj",
+      "projectPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\webapi.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\obj\\",
+      "outputPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -10273,11 +10273,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj"
+            "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj": {
+              "projectPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Infra\\Infra.csproj": {
-              "projectPath": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Infra\\Infra.csproj"
+            "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Infra\\Infra.csproj": {
+              "projectPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Infra\\Infra.csproj"
             }
           }
         }

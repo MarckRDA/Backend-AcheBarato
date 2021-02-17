@@ -1,3 +1,4 @@
+using Domain.Common;
 using Domain.Models.Products;
 using Domain.Models.Users;
 using Moq;

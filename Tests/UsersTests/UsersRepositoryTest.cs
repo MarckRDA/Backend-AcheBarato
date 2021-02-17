@@ -6,15 +6,13 @@ using System.Collections.Generic;
 
 namespace Tests.Users
 {
-    public class UsersRepositoryTest : MyMocks
+    public class UsersRepositoryTest : UsersTestMethods
     {
         [Fact]
         public void Add_is_valid()
         {
             //Given
-            var user = UserService.CreateUser("Matheus Tallmann", "senha", 
-                "matheus.tallmann7787@gmail.com", Profile.Adm, "47991320566"
-            );
+            var user = CreateUserGenerator();
             
             //Then
             UsersRepository.Verify(x => x.add(user), Times.Once());
@@ -52,13 +50,10 @@ namespace Tests.Users
         public void GetUserByEmail_is_valid()
         {
             //Given
-            var user = UserService.CreateUser("Matheus Tallmann", "senha", 
-                "matheus.tallmann7787@gmail.com", Profile.Adm, "47991320566"
-            );
-            UsersRepository.Setup(x => x.GetUserByEmail(user.Email)).Returns(user);
+            var user = CreateUserGenerator();
         
             //When
-            UsersRepository.Object.GetUserByEmail(user.Email);
+            UserService.GetUserByEmail("matheus.tallmann7787@gmail.com");
 
             //Then
             UsersRepository.Verify(x => x.GetUserByEmail(user.Email), Times.Once());

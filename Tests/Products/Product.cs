@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Tests.Products
 {
-    public class ProductTest : MyMocks
+    public class ProductTest : ProductsTestMethods
     {
         [Fact]
         public void AddDescription_is_valid()
