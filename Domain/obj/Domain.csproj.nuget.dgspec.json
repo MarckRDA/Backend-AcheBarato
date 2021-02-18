@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj": {}
+    "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj": {
+    "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\entra21\\.nuget\\packages\\",
-        "outputPath": "P:\\dev\\vinícius C#Noturno\\AcheBaratas\\Backend-AcheBarato\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\entra21\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -63,6 +63,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
