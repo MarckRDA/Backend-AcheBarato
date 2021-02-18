@@ -10,6 +10,7 @@ namespace webapi.Services.MessagerBrokers
     public class MessagerBroker : IMessagerBroker
     {
         private readonly IConfiguration _configuration;
+        private static readonly string _urlRabbitConnection = "amqps://snyrhojh:oDLO59ZkdvrV1GUxBmxflwGiuZeK9zL7@eagle.rmq.cloudamqp.com/snyrhojh";
 
         public MessagerBroker(IConfiguration configuration)
         {
@@ -20,11 +21,9 @@ namespace webapi.Services.MessagerBrokers
         {
             var factory = new ConnectionFactory()
             {
-                HostName = _configuration.GetValue<string>("RabbitMQSettings:HostName"),
-                UserName = _configuration.GetValue<string>("RabbitMQSettings:User"),
-                Password = _configuration.GetValue<string>("RabbitMQSettings:Password")
-
+                Uri = new Uri(_urlRabbitConnection)
             };
+            
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {

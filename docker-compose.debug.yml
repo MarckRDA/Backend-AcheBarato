@@ -3,11 +3,15 @@
 version: '3.4'
 
 services:
-  achebarato:
-    container_name: achebaratoapi
-    image: achebaratoapi
+  webapi:
+    image: webapi
     build:
       context: .
       dockerfile: webapi/Dockerfile
     ports:
-      - 80:443
+      - 80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw

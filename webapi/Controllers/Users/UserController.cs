@@ -116,6 +116,14 @@ namespace webapi.Controllers.Users
             return Ok();
         }
 
+        [HttpGet]
+        public IActionResult Me()
+        {
+            var value = Environment.GetEnvironmentVariable("private_key", EnvironmentVariableTarget.Machine);
+
+            return Ok($"valor: {value}");
+        }
+
     }
 
 }

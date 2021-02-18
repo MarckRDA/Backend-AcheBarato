@@ -126,8 +126,7 @@ namespace webapi
                 var uri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent());
                 return new URIService(uri);
             });
-
-
+        
             services.AddControllers();
 
             ProductMap.Configure();
@@ -157,7 +156,7 @@ namespace webapi
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("achebarato");
-            
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -183,9 +182,9 @@ namespace webapi
         private void InitProcess()
         {
 
-            BackgroundJob.Enqueue<ProductBackgroundTask>(x => x.PushProductsInDB());
-            //RecurringJob.AddOrUpdate<ProductBackgroundTask> (x => x.NotifyUserAboutAlarmPrice (), Cron.MinuteInterval(5));
-            //BackgroundJob.Enqueue<ProductBackgroundTask> (x => x.MonitorPriceProducts ());
+            //BackgroundJob.Enqueue<ProductBackgroundTask>(x => x.PushProductsInDB());
+            RecurringJob.AddOrUpdate<ProductBackgroundTask>(x => x.NotifyUserAboutAlarmPrice(), Cron.MinuteInterval(5));
+            RecurringJob.AddOrUpdate<ProductBackgroundTask>(x => x.MonitorPriceProducts(), Cron.Daily(0));
         }
 
     }

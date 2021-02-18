@@ -38,19 +38,6 @@ namespace webapi.Services.BackgroundService
 
                 foreach (var productList in listProductsToPush)
                 {
-                    foreach (var productPushedFromApi in productList)
-                    {
-                        if (_collectionProducts.Find(filter.Eq(x => x.MLBId, productPushedFromApi.MLBId)).FirstOrDefault() != null)
-                        {
-                            productList.Remove(productPushedFromApi);
-                            continue;
-                        }
-                    }
-
-                    if (productList.Count == 0)
-                    {
-                        return;
-                    }
                     _collectionProducts.InsertManyAsync(productList);
                 }
             }
