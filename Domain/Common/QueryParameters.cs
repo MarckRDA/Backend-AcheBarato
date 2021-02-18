@@ -9,10 +9,7 @@ namespace Domain.Common
         public string OrderBy { get; set; } = "";
         public int Limit { get; set; } = 12;
 
-        public QueryParameters()
-        {
-            
-        }
+        public QueryParameters() {}
 
         public QueryParameters(int pageNumber, int limit)
         {

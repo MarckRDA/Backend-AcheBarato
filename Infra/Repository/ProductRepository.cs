@@ -23,7 +23,7 @@ namespace Infra.Repository
             _repository = repository;
             _configuration = configuration;
             var database = new MongoClient(_configuration.GetValue<string>("MongoSettings:Connection"))
-                            .GetDatabase(_configuration.GetValue<string>("MongoSettings:DatabaseName"));
+                .GetDatabase(_configuration.GetValue<string>("MongoSettings:DatabaseName"));
             _collection = database.GetCollection<Product>("Products");
         }
 
@@ -61,10 +61,12 @@ namespace Infra.Repository
             {
                 trendProducts.Add(product);
             }
+
             foreach (var product in _collection.Find(filterTrendGeladeiras).ToList().TakeLast(10))
             {
                 trendProducts.Add(product);
             }
+
             foreach (var product in _collection.Find(filterTrendCelulares).ToList().TakeLast(10))
             {
                 trendProducts.Add(product);
@@ -92,53 +94,56 @@ namespace Infra.Repository
         public (IQueryable<Product> products, bool isThereAnyProductsInBD, int quantitySerached) GetFilterProductsByName(QueryParameters parameters)
         {
             var splitedSearch = parameters.Search
-                            .ToUpper()
-                            .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
-                            .ToList();
+                .ToUpper()
+                .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
             var builder = Builders<Product>.Filter;
             
             var filterTag = builder.All(x => x.Tag, splitedSearch) 
-                            & builder.Gte(productsSearched => productsSearched.Price, parameters.MinPrice) 
-                            & builder.Lte(p => p.Price, parameters.MaxPrice);
+                & builder.Gte(productsSearched => productsSearched.Price, parameters.MinPrice) 
+                & builder.Lte(p => p.Price, parameters.MaxPrice);
             
-            IQueryable<Product> productsSearched =  _collection.Find(filterTag).ToList().AsQueryable();
+            IQueryable<Product> productsSearched =  _collection
+                .Find(filterTag)
+                .ToList()
+                .AsQueryable();
 
             var orderingFilter = parameters.OrderBy; 
             
             if (orderingFilter == "max")
             {
                 productsSearched =  _collection.Find(filterTag)
-                                    .SortByDescending(x => x.Price)
-                                    .ToList()
-                                    .AsQueryable();
+                    .SortByDescending(x => x.Price)
+                    .ToList()
+                    .AsQueryable();
             }
             else if (orderingFilter == "min")
             {
                 productsSearched =  _collection.Find(filterTag)
-                                    .SortBy(x => x.Price)
-                                    .ToList()
-                                    .AsQueryable();
+                    .SortBy(x => x.Price)
+                    .ToList()
+                    .AsQueryable();
 
             }
             else if (orderingFilter == "az")
             {
                 productsSearched =  _collection.Find(filterTag)
-                                    .SortBy(x => x.Name)
-                                    .ToList()
-                                    .AsQueryable();
+                    .SortBy(x => x.Name)
+                    .ToList()
+                    .AsQueryable();
             }
             else if (orderingFilter == "za")
             {
                 productsSearched =  _collection.Find(filterTag)
-                                    .SortByDescending(x => x.Name)
-                                    .ToList()
-                                    .AsQueryable();
+                    .SortByDescending(x => x.Name)
+                    .ToList()
+                    .AsQueryable();
             }
 
             return (productsSearched.Skip((parameters.PageNumber - 1) * parameters.Limit)
-                    .Take(parameters.Limit), 
-                    productsSearched.Count() > 10, 
-                    productsSearched.Count());
+                .Take(parameters.Limit), 
+                productsSearched.Count() > 10, 
+                productsSearched.Count());
         }
 
         public List<Product> GetProductsByCategories(QueryParameters parameters)
@@ -150,14 +155,12 @@ namespace Infra.Repository
         }
         public List<Product> GetProductsByCategories(string IdMLB)
         {
-             return _collection.AsQueryable().Where(x => x.Cathegory.IdMLB == IdMLB).ToList();
+            return _collection.AsQueryable().Where(x => x.Cathegory.IdMLB == IdMLB).ToList();
         }
 
         public List<Description> GetProductDescription(Guid idProduct)
         {
-            var product = GetEntityById(x => x.id_product, idProduct);
-
-            return product.Descriptions;
+            return GetEntityById(x => x.id_product, idProduct).Descriptions;
         }
 
         public Product GetEntityById(Expression<Func<Product, Guid>> function, Guid value)

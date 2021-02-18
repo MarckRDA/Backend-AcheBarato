@@ -16,7 +16,6 @@ namespace Domain.Models.Products
             _repository = repository;
         }
 
-
         public (IQueryable<ProductDTO> productsSeached, int quantityData) GetAllProduct(QueryParameters parameters)
         {
             if (parameters.Search.StartsWith("MLB"))
@@ -38,14 +37,12 @@ namespace Domain.Models.Products
             }
             
             var productInDB = _repository.GetFilterProductsByName(parameters);
-
             if (!productInDB.isThereAnyProductsInBD)
             {
                 PostProductInDB(parameters.Search);
                 var searched = _repository.GetFilterProductsByName(parameters);
                 var p = searched.products;
                 var total = searched.quantitySerached;
-                
   
                 return (p.Select(product => new ProductDTO()
                 {
@@ -53,7 +50,6 @@ namespace Domain.Models.Products
                     ThumbImgLink = product.ThumbImgLink,
                     Price = product.Price,
                     id_product = product.id_product
-
                 }), total);
             }
 
@@ -66,6 +62,7 @@ namespace Domain.Models.Products
 
                 }), productInDB.quantitySerached);
         }
+
         public List<Product> GetProdutsBasedOnUserSearches(string searchTag)
         {
             return _repository.GetProductsByUserPreferences(searchTag).ToList();
@@ -76,6 +73,7 @@ namespace Domain.Models.Products
             var products = _repository.GetProductsByCategories(parameters);
             return (products, products.Count);
         }
+        
         public List<ProductDTO> GetRelatedProductsDTO(Guid idProduct)
         {
             return _repository
@@ -153,5 +151,4 @@ namespace Domain.Models.Products
             return trendsProductsDTO;
         }
     }
-
 }

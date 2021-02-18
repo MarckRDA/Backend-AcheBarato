@@ -14,22 +14,19 @@ namespace Domain.Models.Users
 
         public User CreateUser(string name, string password, string email, Profile profile, string phoneNumber)
         {
+            if (_repository.ExistAnyUserWithThisEmail(email))
             {
-                if (_repository.ExistAnyUserWithThisEmail(email))
-                {
-                    return null;
-                }
-                
-                var newUser = new User(name, email, password, profile, phoneNumber);
-                if (newUser.Validate().isValid)
-                {
-                    _repository.add(newUser);
-                    return newUser;
-                }
-
                 return null;
             }
+            
+            var newUser = new User(name, email, password, profile, phoneNumber);
+            if (newUser.Validate().isValid)
+            {
+                _repository.add(newUser);
+                return newUser;
+            }
 
+            return null;
         }
 
         public User GetUserById(Guid idUser)

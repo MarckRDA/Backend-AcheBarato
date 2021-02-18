@@ -10249,11 +10249,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "/home/marckrda/.nuget/packages/": {}
+=======
+    "C:\\Users\\User\\.nuget\\packages\\": {}
+>>>>>>> c0b93036088aee19fca988ded4f493eaa7f6bd87
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
       "projectName": "webapi",
       "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
@@ -10262,6 +10267,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/marckrda/.nuget/NuGet/NuGet.Config"
+=======
+      "projectUniqueName": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\webapi.csproj",
+      "projectName": "webapi",
+      "projectPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\webapi.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\webapi\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> c0b93036088aee19fca988ded4f493eaa7f6bd87
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -10273,11 +10288,19 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+<<<<<<< HEAD
             "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
               "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj"
             },
             "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj": {
               "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Infra/Infra.csproj"
+=======
+            "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj": {
+              "projectPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Domain\\Domain.csproj"
+            },
+            "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Infra\\Infra.csproj": {
+              "projectPath": "c:\\Users\\User\\PROGRAMMING\\AcheBarato\\Backend-AcheBarato\\Infra\\Infra.csproj"
+>>>>>>> c0b93036088aee19fca988ded4f493eaa7f6bd87
             }
           }
         }
@@ -10347,6 +10370,16 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.11, 3.1.11]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -10355,7 +10388,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+>>>>>>> c0b93036088aee19fca988ded4f493eaa7f6bd87
       }
     }
   }
