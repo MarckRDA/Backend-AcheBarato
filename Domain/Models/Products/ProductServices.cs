@@ -68,7 +68,7 @@ namespace Domain.Models.Products
             return _repository.GetProductsByUserPreferences(searchTag).ToList();
         } 
 
-        public (List<Product> products1, int quantityData) GetProductsByCategory(QueryParameters parameters)
+        private (List<Product> products1, int quantityData) GetProductsByCategory(QueryParameters parameters)
         {
             var products = _repository.GetProductsByCategories(parameters);
             return (products, products.Count);
@@ -151,5 +151,4 @@ namespace Domain.Models.Products
             return trendsProductsDTO;
         }
     }
-
 }
