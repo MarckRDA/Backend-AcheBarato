@@ -12,9 +12,9 @@ namespace Tests.Users
     {
         public Guid UserId { get; set; }
         public string Name { get; set; }
-        public List<Product> WishListProducts {get; set;} 
-        public List<string> SearchTag { get; set; }
-        public List<AlarmPrice> WishProductsAlarmPrices {get; set;}
+        public List<Product> WishListProducts {get; set;} = new List<Product>();
+        public List<string> SearchTag { get; set; } = new List<string>();
+        public List<AlarmPrice> WishProductsAlarmPrices {get; set;} = new List<AlarmPrice>();
         
         private Product ProductGenerator()
         {
@@ -22,18 +22,18 @@ namespace Tests.Users
                 "Aves", "MLA1100", 100, "Link", "Redirect", new Cathegory("MLA5725", "Accesorios para Vehiculos"), new string[1]{"tag"}
             );
         }
-        [Fact]
-        public void TestName()
-        {
-            //Given, When
-            var userDTO = new UserDTO();
-            userDTO.Name = "Marcos Rocha";
-            userDTO.SearchTag.Add("job");
-            userDTO.UserId = Guid.NewGuid();
-            userDTO.WishListProducts.Add(ProductGenerator());
-            userDTO.WishProductsAlarmPrices.Add(new AlarmPrice(Guid.NewGuid(), 11.42));
+        // [Fact]
+        // public void TestName()
+        // {
+        //     //Given, When
+        //     var userDTO = new UserDTO();
+        //     userDTO.Name = "Marcos Rocha";
+        //     userDTO.SearchTag.Add("job");
+        //     userDTO.UserId = Guid.NewGuid();
+        //     userDTO.WishListProducts.Add(ProductGenerator());
+        //     userDTO.WishProductsAlarmPrices.Add(new AlarmPrice(Guid.NewGuid(), 11.42));
             
-            //Then
-        }
+        //     //Then
+        // }
     }    
 }
