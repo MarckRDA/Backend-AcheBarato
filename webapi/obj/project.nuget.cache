@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DcpoKD40vv5fuFCyPLNxi9vDKO7TvngXOPtWjNrkcuxOGmQYXyQMZ460HRdQL1Ytcrcv4fRlGS57js6AAmI4Ew==",
+  "dgSpecHash": "JPeWmmYDM07t93dGWqzy+yQY0J0s4iIQCAyMml3U1f0pN0g9VUhOfizUSHnstBEpM6VeHSjTm5M+07DIZZyEbQ==",
   "success": true,
   "projectFilePath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/webapi.csproj",
   "expectedPackageFiles": [
@@ -212,12 +212,5 @@
     "/home/marckrda/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
     "/home/marckrda/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache /home/marckrda/ws-csharp-entra21/AcheBaratoBE/webapi/obj/project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
