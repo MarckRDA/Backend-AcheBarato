@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {}
+    "P:\\dev\\MatheusTallmann\\Backend-AcheBarato\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj": {
+    "P:\\dev\\MatheusTallmann\\Backend-AcheBarato\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
+        "projectUniqueName": "P:\\dev\\MatheusTallmann\\Backend-AcheBarato\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/Domain.csproj",
-        "packagesPath": "/home/marckrda/.nuget/packages/",
-        "outputPath": "/home/marckrda/ws-csharp-entra21/AcheBaratoBE/Domain/obj/",
+        "projectPath": "P:\\dev\\MatheusTallmann\\Backend-AcheBarato\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\entra21\\.nuget\\packages\\",
+        "outputPath": "P:\\dev\\MatheusTallmann\\Backend-AcheBarato\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/marckrda/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\entra21\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -63,12 +63,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+>>>>>>> 5569340199e9e00f86eaddc03f75f6e216e27c30
         }
       }
     }
